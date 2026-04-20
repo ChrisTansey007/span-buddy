@@ -3,8 +3,26 @@ node_modules/
 out/
 dist/
 coverage/
+playwright-report/
+test-results/
 .env
 .env.local
+.env.*.local
 *.log
 .DS_Store
 .git/index.lock
+
+# Scratch / driver scripts used by the orchestrator
+.setup.bat
+.auth.bat
+.commit*.bat
+.gstat.bat
+.verify.bat
+.setup.log
+.auth.log
+.commit*.log
+.gstat.log
+.verify.log
+
+# OpenCode run archives
+.opencode-runs/
