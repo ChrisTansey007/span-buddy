@@ -24,5 +24,11 @@ test-results/
 .gstat.log
 .verify.log
 
+# OpenCode orchestration scratch — NEVER commit (serve bat contains API key)
+.prompt-*.txt
+.payload-*.json
+.session-*.txt
+.oc-serve.bat
+
 # OpenCode run archives
 .opencode-runs/
