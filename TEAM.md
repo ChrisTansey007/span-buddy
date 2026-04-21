@@ -25,6 +25,18 @@ All templates bake in the 2026-04 known-issue fixes from the skill library:
 - **Nano 30B** acceptable for docs-only tasks (pure write, no iteration).
 - `variant:high` costs more tokens; reserve for architecture and review. `variant:medium` is the default workhorse.
 
+### Known pathologies — Super 49B (observed 2026-04-21)
+
+Two failure modes observed live during the Phase 0 kickoff. Both change how the director hands work to this model.
+
+1. **Post-FINAL loop.** On a bash smoke test — ask it to run `pnpm --version`, report, end with `FINAL:` — Super 49B completed the task correctly on assistant message 3, then kept generating six more messages of "It seems there was a misunderstanding..." before the session was aborted. The `FINAL:` line does **not** stop the model; it just marks a point the driver can grep for. Implication: `scripts/run-agent.ps1` **must** abort the session as soon as `FINAL:` appears in an assistant text part.
+2. **Empty-text long-markdown output.** On a "write one long markdown RFC" prompt (Phase 0.1), the `build` agent produced ~618 output tokens that never materialized into a text part — parts ended `step-start, step-finish` only. Root cause unknown, likely a streaming-parts bug in this model/provider combination when the output is single-turn prose with no tool use. Takeaway: **don't use Super 49B for "produce one long markdown file" tasks** — director writes those directly.
+
+Orchestration rules that fall out of these:
+- Never give Super 49B a multi-step prompt that chains "do A, then B, then C, then stop." Split into atomic prompts with abort-after-FINAL, or do it directly.
+- The sweet spot for this model is tool-heavy atomic work (one module, one feature, one test file) — not prose generation and not long multi-step procedures.
+- Phase 0.2 was the first casualty: 15-step scaffold was pulled in-house for this reason.
+
 ---
 
 ## Shared prompt prelude

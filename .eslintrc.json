@@ -1,0 +1,24 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["next", "next/*", "react", "react-dom"],
+            "message": "engine/ must be framework-free. Move UI-coupled code to components/ or lib/."
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["app/**/*", "components/**/*", "lib/**/*", "tests/**/*", "*.config.*", "**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts"],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ]
+}

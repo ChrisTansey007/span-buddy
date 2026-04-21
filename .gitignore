@@ -5,6 +5,7 @@ dist/
 coverage/
 playwright-report/
 test-results/
+*.tsbuildinfo
 .env
 .env.local
 .env.*.local
@@ -17,18 +18,23 @@ test-results/
 .auth.bat
 .commit*.bat
 .gstat.bat
-.verify.bat
+.verify*.bat
+.pnpm-install.bat
 .setup.log
 .auth.log
 .commit*.log
 .gstat.log
-.verify.log
+.verify*.log
+.pnpm-install.log
 
 # OpenCode orchestration scratch — NEVER commit (serve bat contains API key)
 .prompt-*.txt
+.prompt-*.augmented.txt
 .payload-*.json
 .session-*.txt
 .oc-serve.bat
+.opencode-launch.bat
+.post-*.bat
 
 # OpenCode run archives
 .opencode-runs/
