@@ -33,13 +33,29 @@ pathologies in `TEAM.md`):
 Issue this prompt, on the same agent / model / variant / directory, to verify
 the session returns a text part and the driver aborts on `FINAL:`:
 
-> Read `components/ui/DisclaimerBanner.test.tsx` and print the three `it(...)`
-> test names, one per line, then end with `FINAL:`.
+> The session cwd is already set to the span-buddy project root. Using a
+> **relative path only** (not an absolute path), read
+> `components/ui/DisclaimerBanner.test.tsx` and print the three `it(...)` test
+> names, one per line, then end with `FINAL:`. Do not construct an absolute
+> path under any circumstances.
 
 Expected: three lines matching the titles in `DisclaimerBanner.test.tsx`, then a
 `FINAL:` line. Driver aborts. If the session produces empty text parts, times
 out, or continues past `FINAL:`, fix the driver / prompt before running the real
 task below.
+
+### Iteration log
+
+- **2026-04-21 iter 1 — FAILED.** Smoke prompt was the relative path
+  `components/ui/DisclaimerBanner.test.tsx`. Super 49B constructed an absolute
+  path for the `read` tool call and *space-stripped the project directory*
+  (`...\FineTuneOpenCode\span-buddy\...` instead of `...\Fine Tune OpenCode\span-buddy\...`).
+  The `read` tool then hung on the non-existent path until aborted. Dump at
+  `.opencode-runs/2026-04-21-probe-ses_24e6f0244ffeFq8y71wJBi67Kq.json`.
+  **Fix:** the smoke probe and the real prompt below both now forbid absolute
+  paths explicitly and require relative paths from the session cwd. This is a
+  generalized Super 49B pathology when the project path contains spaces;
+  future phases inherit this discipline from here.
 
 ## Real prompt (send only after smoke probe is clean)
 
@@ -70,6 +86,11 @@ Deliverable: exactly one new Vitest file, `app/layout.integration.test.tsx`, con
 1. `RootLayout` with `<Home />` as children mounts the disclaimer banner (match by `DISCLAIMER_TEXT` imported from `components/ui/DisclaimerBanner.tsx`, or by `role="alert"` with `aria-label="Engineering disclaimer"` — your call, but import the constant; do not duplicate the string).
 2. `RootLayout` with `<Home />` as children renders the home page heading — the exact text is in `app/page.tsx`; read the file and assert the heading text that is actually there.
 3. `RootLayout` with `<NotFound />` as children still mounts the disclaimer banner (layout-level persistence regression guard).
+
+Tool-call path discipline (non-negotiable — your session has already failed once on this):
+- The session cwd is set to the span-buddy project root. Every file-touching tool call (read, edit, write, bash, grep, glob) must use **relative paths from that root** — e.g. `components/ui/DisclaimerBanner.tsx`, not `C:\...\span-buddy\components\ui\DisclaimerBanner.tsx`.
+- Do not construct absolute paths, do not prefix with the project root, do not interpolate `$root` or similar. The project path contains spaces ("Fine Tune OpenCode") and Super 49B has been observed space-stripping them when it builds absolute paths, producing a `...\FineTuneOpenCode\...` path that does not exist. That pathology is how the prior smoke probe hung.
+- If a tool insists on an absolute path, stop and add a `NEEDS_REFACTOR` note instead of improvising.
 
 Constraints:
 - Render the real `RootLayout`. Do not mock it, do not inline a substitute. `RootLayout` returns `<html>/<body>`, which `@testing-library/react` will not accept as children of its default container. Pick one of these two approaches and comment which and why at the top of the test file:
