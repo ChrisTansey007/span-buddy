@@ -28,21 +28,42 @@ pathologies in `TEAM.md`):
    fallback is even considered; if fallback happens, commit the failed prompt
    variant + diagnosis + working alternative back to this file.
 
-## Smoke probe (run first — ~100 tokens of work)
+## Smoke probe (run first — binary pass of tool invocation)
 
-Issue this prompt, on the same agent / model / variant / directory, to verify
-the session returns a text part and the driver aborts on `FINAL:`:
+Narrow probe. We are not extracting content and we are not testing reasoning.
+We are testing one thing: can Super 49B build a clean `read` tool call against
+this project path and stop cleanly at `FINAL:`. Positive instructions only —
+no "do not" constraints; iter 2 below showed Super 49B freezes up on stacked
+negatives and skips the tool entirely.
 
-> The session cwd is already set to the span-buddy project root. Using a
-> **relative path only** (not an absolute path), read
-> `components/ui/DisclaimerBanner.test.tsx` and print the three `it(...)` test
-> names, one per line, then end with `FINAL:`. Do not construct an absolute
-> path under any circumstances.
+Issue this prompt on the same agent / model / variant / directory:
 
-Expected: three lines matching the titles in `DisclaimerBanner.test.tsx`, then a
-`FINAL:` line. Driver aborts. If the session produces empty text parts, times
-out, or continues past `FINAL:`, fix the driver / prompt before running the real
-task below.
+> Your first action is to call the `read` tool with this exact argument:
+>
+> ```json
+> {"filePath": "components/ui/DisclaimerBanner.test.tsx"}
+> ```
+>
+> Copy the `filePath` value literally. It is a relative path and the session
+> cwd is the project root, so the tool will resolve it.
+>
+> After the tool returns, respond with exactly one line and nothing else:
+>
+> ```
+> FINAL: probe ok
+> ```
+
+Pass criteria (all three must hold):
+
+1. Assistant message contains a tool part with `tool = "read"` and
+   `state.status = "completed"`.
+2. The tool's `filePath` argument is the literal string
+   `components/ui/DisclaimerBanner.test.tsx` — no drive letter, no prefix,
+   no space-stripped variant like `...\FineTuneOpenCode\...`.
+3. The trailing text part equals `FINAL: probe ok`.
+
+On any failure: add an entry to the Iteration log, edit this file, re-run.
+Do not advance to the real task below until the probe passes.
 
 ### Iteration log
 
@@ -52,10 +73,24 @@ task below.
   (`...\FineTuneOpenCode\span-buddy\...` instead of `...\Fine Tune OpenCode\span-buddy\...`).
   The `read` tool then hung on the non-existent path until aborted. Dump at
   `.opencode-runs/2026-04-21-probe-ses_24e6f0244ffeFq8y71wJBi67Kq.json`.
-  **Fix:** the smoke probe and the real prompt below both now forbid absolute
-  paths explicitly and require relative paths from the session cwd. This is a
-  generalized Super 49B pathology when the project path contains spaces;
-  future phases inherit this discipline from here.
+  **Diagnosis:** Super 49B mis-constructs absolute paths on directories with
+  spaces. **Attempted fix (iter 2):** stack negative constraints telling it
+  never to build an absolute path. This turned out to be the wrong instinct;
+  see iter 2.
+- **2026-04-21 iter 2 — FAILED (worse).** After adding "do not construct
+  absolute paths under any circumstances" plus three more negative
+  constraints, Super 49B stopped calling the `read` tool entirely.
+  5-second response with zero tool parts; hallucinated a refusal
+  ("Test names could not be extracted. Please provide the file...") and
+  jumped straight to `FINAL:`. Dump at
+  `.opencode-runs/2026-04-21-probe2-ses_24e62470cffeKz1Of2ov40iCYw.json`.
+  **Diagnosis:** Super 49B degrades under stacked negative constraints — told
+  what not to do, it chose skip-the-tool over risk-the-tool. **Fix (iter 3):**
+  positive-only instructions; show the literal tool-call argument instead of
+  proscribing what not to build; dumb down the probe to one tool call + one
+  text line + binary pass (no content extraction). Same pattern applied to
+  the real prompt's path-style section below. This is a generalized Super 49B
+  workmanship rule: **never stack negatives, always show the shape you want.**
 
 ## Real prompt (send only after smoke probe is clean)
 
@@ -87,10 +122,19 @@ Deliverable: exactly one new Vitest file, `app/layout.integration.test.tsx`, con
 2. `RootLayout` with `<Home />` as children renders the home page heading — the exact text is in `app/page.tsx`; read the file and assert the heading text that is actually there.
 3. `RootLayout` with `<NotFound />` as children still mounts the disclaimer banner (layout-level persistence regression guard).
 
-Tool-call path discipline (non-negotiable — your session has already failed once on this):
-- The session cwd is set to the span-buddy project root. Every file-touching tool call (read, edit, write, bash, grep, glob) must use **relative paths from that root** — e.g. `components/ui/DisclaimerBanner.tsx`, not `C:\...\span-buddy\components\ui\DisclaimerBanner.tsx`.
-- Do not construct absolute paths, do not prefix with the project root, do not interpolate `$root` or similar. The project path contains spaces ("Fine Tune OpenCode") and Super 49B has been observed space-stripping them when it builds absolute paths, producing a `...\FineTuneOpenCode\...` path that does not exist. That pathology is how the prior smoke probe hung.
-- If a tool insists on an absolute path, stop and add a `NEEDS_REFACTOR` note instead of improvising.
+Tool-call path shape — copy these literal shapes for every file-touching call. The session cwd is the project root; relative paths resolve cleanly.
+
+- `read` — `{"filePath": "components/ui/DisclaimerBanner.tsx"}`
+- `read` — `{"filePath": "app/layout.tsx"}`
+- `read` — `{"filePath": "app/page.tsx"}`
+- `read` — `{"filePath": "app/not-found.tsx"}`
+- `read` — `{"filePath": "tsconfig.json"}`
+- `write` — `{"filePath": "app/layout.integration.test.tsx", "content": "<file contents>"}`
+- `bash` — `{"command": "pnpm test -- --run"}`
+- `glob` — `{"pattern": "app/**/*.tsx"}`
+- `grep` — `{"pattern": "DISCLAIMER_TEXT", "path": "components/ui"}`
+
+Use these exact shapes. The `filePath` value is the relative path from the project root — just the path, the way it is written above. If any tool call returns a "file not found" or path-style error, stop, and add a comment at the very top of `app/layout.integration.test.tsx`: `// NEEDS_REFACTOR: <tool name> rejected <path> — <error>`, then stop.
 
 Constraints:
 - Render the real `RootLayout`. Do not mock it, do not inline a substitute. `RootLayout` returns `<html>/<body>`, which `@testing-library/react` will not accept as children of its default container. Pick one of these two approaches and comment which and why at the top of the test file:
