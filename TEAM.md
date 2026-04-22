@@ -13,29 +13,33 @@ All templates bake in the 2026-04 known-issue fixes from the skill library:
 
 | Agent | Role | OpenCode agent type | Model | Variant | Primary tools |
 |---|---|---|---|---|---|
-| **Architect** | System design, RFCs, API shape | `plan` | `nvidia/llama-3.3-nemotron-super-49b-v1` | `high` | read, glob, grep, webfetch |
-| **Builder** | Feature implementation, file edits | `build` | `nvidia/llama-3.3-nemotron-super-49b-v1` | `medium` | all |
-| **Tester** | Writes + runs unit / E2E tests | `build` | `nvidia/llama-3.3-nemotron-super-49b-v1` | `medium` | all (bash-heavy) |
-| **Reviewer** | Structured code review, PASS / NEEDS_FIXES verdict | `explore` | `nvidia/llama-3.3-nemotron-super-49b-v1` | `high` | read, glob, grep |
-| **Fixer** | Addresses reviewer findings | `build` | `nvidia/llama-3.3-nemotron-super-49b-v1` | `medium` | all |
+| **Architect** | System design, RFCs, API shape | `plan` | `nvidia/nemotron-3-super-120b-a12b` | `high` | read, glob, grep, webfetch |
+| **Builder** | Feature implementation, file edits | `build` | `nvidia/nemotron-3-super-120b-a12b` | `medium` | all |
+| **Tester** | Writes + runs unit / E2E tests | `build` | `nvidia/nemotron-3-super-120b-a12b` | `medium` | all (bash-heavy) |
+| **Reviewer** | Structured code review, PASS / NEEDS_FIXES verdict | `explore` | `nvidia/nemotron-3-super-120b-a12b` | `high` | read, glob, grep |
+| **Fixer** | Addresses reviewer findings | `build` | `nvidia/nemotron-3-super-120b-a12b` | `medium` | all |
 | **Docs** | README, inline JSDoc, AGENTS.md | `build` | `nvidia/nemotron-3-nano-30b-a3b` | `low` | read, edit, write |
 
 ### Model choice notes
-- **Super 49B** for anything that reads then writes files. Nano 30B loops on multi-step tool work per the skill-library test results.
-- **Nano 30B** acceptable for docs-only tasks (pure write, no iteration).
-- `variant:high` costs more tokens; reserve for architecture and review. `variant:medium` is the default workhorse.
+- **Super 120B (Nemotron 3)** — default for every tool-using role (Architect / Builder / Tester / Reviewer / Fixer). `capabilities.toolcall: true`, `reasoning: true`, 262K ctx, variants low/medium/high.
+- **Nano 30B (Nemotron 3)** — Docs only. `capabilities.toolcall: true` verified 2026-04-22.
+- `variant:high` for Architect + Reviewer (design / judgment). `variant:medium` default. `variant:low` for Docs.
 
-### Known pathologies — Super 49B (observed 2026-04-21)
+### Model-capability discipline — `capabilities.toolcall`
 
-Two failure modes observed live during the Phase 0 kickoff. Both change how the director hands work to this model.
+Before adopting any new model, GET `/config/providers` and confirm `capabilities.toolcall: true` on its entry. The OpenCode wrapper does **not** error on non-tool models — it silently degrades into tool-call shapes hallucinated in prose. The entire current roster was re-verified via `/config/providers` on 2026-04-22.
 
-1. **Post-FINAL loop.** On a bash smoke test — ask it to run `pnpm --version`, report, end with `FINAL:` — Super 49B completed the task correctly on assistant message 3, then kept generating six more messages of "It seems there was a misunderstanding..." before the session was aborted. The `FINAL:` line does **not** stop the model; it just marks a point the driver can grep for. Implication: `scripts/run-agent.ps1` **must** abort the session as soon as `FINAL:` appears in an assistant text part.
-2. **Empty-text long-markdown output.** On a "write one long markdown RFC" prompt (Phase 0.1), the `build` agent produced ~618 output tokens that never materialized into a text part — parts ended `step-start, step-finish` only. Root cause unknown, likely a streaming-parts bug in this model/provider combination when the output is single-turn prose with no tool use. Takeaway: **don't use Super 49B for "produce one long markdown file" tasks** — director writes those directly.
+### Known pathologies — Super 49B (SUPERSEDED 2026-04-22)
 
-Orchestration rules that fall out of these:
-- Never give Super 49B a multi-step prompt that chains "do A, then B, then C, then stop." Split into atomic prompts with abort-after-FINAL, or do it directly.
-- The sweet spot for this model is tool-heavy atomic work (one module, one feature, one test file) — not prose generation and not long multi-step procedures.
-- Phase 0.2 was the first casualty: 15-step scaffold was pulled in-house for this reason.
+Both pathologies below were root-caused to `capabilities.toolcall: false` on `nvidia/llama-3.3-nemotron-super-49b-v1` and no longer apply after the roster swap. Preserved as institutional memory — if similar symptoms re-appear, check `capabilities.toolcall` on the model in use first.
+
+1. **Post-FINAL loop.** On a bash smoke test Super 49B completed the task correctly on assistant message 3, then kept generating six more messages of "It seems there was a misunderstanding..." before abort. `FINAL:` is a grep marker, not a stop sequence. Implication: `scripts/run-agent.ps1` **must** abort the session as soon as `FINAL:` appears in an assistant text part. **This rule still applies post-swap.**
+2. **Empty-text long-markdown output.** On a Phase 0.1 "one long RFC" prompt, the `build` agent produced ~618 output tokens that never landed as a text part — parts ended `step-start, step-finish` only. With Super 120B (`toolcall:true`) long prose generation works normally.
+
+Orchestration rules that still apply post-swap:
+- Abort-after-`FINAL:` in the driver.
+- Atomize long procedures into per-module prompts. Keep prompts tool-heavy and focused — one module, one feature, one test file.
+- Phase 0.2 (15-step scaffold) was pulled in-house under Super 49B; the atomize-prompts rule stands even though the acute trigger is gone.
 
 ---
 
@@ -94,7 +98,7 @@ OpenCode payload (abbreviated):
   "messageID": "msg_arch_<rand>",
   "agent": "plan",
   "directory": "C:\\Users\\theca\\Documents\\Claude\\Projects\\Fine Tune OpenCode\\span-buddy",
-  "model": { "providerID": "nvidia", "modelID": "nvidia/llama-3.3-nemotron-super-49b-v1" },
+  "model": { "providerID": "nvidia", "modelID": "nvidia/nemotron-3-super-120b-a12b" },
   "variant": "high",
   "parts": [{ "type": "text", "text": "<prompt above>" }]
 }
@@ -249,4 +253,4 @@ Prototype location: `scripts/run-agent.ps1`.
 
 ---
 
-*Last updated: 2026-04-20*
+*Last updated: 2026-04-22 — roster swapped from Super 49B (`toolcall:false`) to Super 120B Nemotron 3 (`toolcall:true`), verified via `/config/providers`.*
