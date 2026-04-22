@@ -124,13 +124,28 @@ Do not advance to the real task below until the probe passes.
   confirm the chosen model has `capabilities.toolcall: true`. The OpenCode
   wrapper will not error on a non-tool model; it will silently produce these
   pathologies instead.
-- **2026-04-21 iter 5 — MODEL SWAP #2.** Switched to
-  `nvidia/nemotron-3-super-120b-a12b` (Nemotron 3 Super, 120B MoE with 12B
-  active params, 262K/262K context/output). Registry confirms
-  `capabilities.toolcall: true` and `capabilities.reasoning: true`. This is
-  the direct upgrade path from the Super 49B family into a tool-capable,
-  reasoning-enabled model. Running the binary-pass smoke probe against this
-  model next.
+- **2026-04-21 iter 5 — MODEL SWAP #2 — PROBE + REAL PROMPT BOTH PASSED.**
+  Switched to `nvidia/nemotron-3-super-120b-a12b` (Nemotron 3 Super, 120B MoE
+  with 12B active params, 262K/262K context/output). Registry confirms
+  `capabilities.toolcall: true` and `capabilities.reasoning: true`.
+  - **Smoke probe:** PASS. One clean `read` tool call with literal relative
+    filePath, then `FINAL: probe ok`. Dump:
+    `.opencode-runs/2026-04-21-probe5-ses_24cf65d0dffePqjNBIqXFNKNja.json`.
+  - **Real Tester run:** PASS. Session
+    `ses_24cf1a4c6ffepbnFC0CwhEFCdr`. Agent read `DisclaimerBanner.tsx`,
+    `app/layout.tsx`, `app/page.tsx` with clean relative paths; wrote
+    `app/layout.integration.test.tsx` (three tests, approach (a) with
+    `renderToStaticMarkup`, `DISCLAIMER_TEXT` constant imported, real
+    components — no mocking); ran `pnpm test` (had to drop the `-- --run`
+    flag because the package script is already `vitest run` and vitest
+    rejects a redundant `--run`); all 11 tests green across 4 files;
+    emitted `FINAL: app/layout.integration.test.tsx — 3 tests added, all
+    green.` Dump:
+    `.opencode-runs/2026-04-21-0-3-tester-ses_24cf1a4c6ffepbnFC0CwhEFCdr.json`.
+  - **Prompt tweak for next phase:** the tool-shape spec should read
+    `bash — {"command": "pnpm test"}` (no `-- --run`) since the npm script is
+    already `vitest run`. The agent recovered on its own, but the redundant
+    flag wasted one bash call.
 
 ## Real prompt (send only after smoke probe is clean)
 
