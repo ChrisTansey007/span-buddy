@@ -9,11 +9,11 @@ without first running the smoke probe below. Derived from the Tester template in
 | Field       | Value |
 |-------------|-------|
 | `agent`     | `build` |
-| `model`     | `nvidia / mistralai/devstral-2-123b-instruct-2512` |
+| `model`     | `nvidia/nemotron-3-super-120b-a12b` |
 | `variant`   | `medium` |
 | `directory` | `C:\Users\theca\Documents\Claude\Projects\Fine Tune OpenCode\span-buddy` |
 
-API payload fields: `providerID = "nvidia"`, `modelID = "mistralai/devstral-2-123b-instruct-2512"`. Super 49B (`nvidia/llama-3.3-nemotron-super-49b-v1`) was the original model; it was swapped out after three failed smoke probes (see Iteration log).
+API payload fields: `providerID = "nvidia"`, `modelID = "nvidia/nemotron-3-super-120b-a12b"`. Super 49B (`nvidia/llama-3.3-nemotron-super-49b-v1`) was the original model; swapped out after three failed smoke probes when we discovered its `capabilities.toolcall = false` in the OpenCode model registry. Devstral 123B (`mistralai/devstral-2-123b-instruct-2512`) was tried as an interim swap; registry claims `toolcall: true` but the probe showed the model emitting the tool call as plain text — evidence that the capability flag is unreliable for that specific model's NVIDIA-provider integration. See Iteration log for the full progression.
 
 Driver discipline (from `feedback_director_vs_doer.md` and the Super 49B
 pathologies in `TEAM.md`):
@@ -104,16 +104,33 @@ Do not advance to the real task below until the probe passes.
   100-token task (absolute-path space-stripping, tool-skip, empty input).
   Super 49B is structurally unreliable at building tool calls against this
   project path.
-- **2026-04-21 iter 4 — MODEL SWAP.** Switched to
-  `nvidia / mistralai/devstral-2-123b-instruct-2512` (Devstral 123B). Rationale:
-  Devstral is a code-specialist model; 262K/262K context/output; stays inside
-  the NVIDIA provider (this project is an NVIDIA-on-OpenCode benchmarking
-  testbed). Kept the positive-only tool-call spec and the binary-pass smoke
-  probe — they're good practice regardless of model and protect the prompt if
-  it's ever re-run on a Super-49B-class model. Re-running the smoke probe on
-  the new model. If Devstral also fails the probe, escalate to the human
-  director — at that point the evidence is that the driver / OpenCode wrapper
-  is at fault, not the model.
+- **2026-04-21 iter 4 — MODEL SWAP #1 (FAILED).** Switched to
+  `nvidia / mistralai/devstral-2-123b-instruct-2512` (Devstral 123B).
+  Result: the model produced zero tool parts — only a text part containing
+  the literal string `read{"filePath": "components/ui/DisclaimerBanner.test.tsx"}`.
+  It transcribed what a tool call should look like rather than invoking one.
+- **2026-04-21 iter 4 postmortem — ROOT CAUSE FOUND.** Inspecting the
+  `/config/providers` endpoint revealed that every model carries a
+  `capabilities.toolcall` boolean. **Super 49B is marked
+  `toolcall: false`**, as is its v1.5 variant. All three iter-1–3 pathologies
+  (space-stripped abs path, tool skip, empty args) were the same underlying
+  bug: OpenCode doesn't pass a tool schema to models the registry flags as
+  non-tool-capable, so Super 49B was hallucinating tool calls in prose.
+  Devstral 123B is registered as `toolcall: true` but still failed, which is
+  a second, narrower issue specific to that model's NVIDIA-provider
+  integration — capability flag is unreliable for Devstral in particular.
+  **Reusable rule for future phases:** before picking a model for an
+  orchestration task, GET `http://127.0.0.1:4096/config/providers` and
+  confirm the chosen model has `capabilities.toolcall: true`. The OpenCode
+  wrapper will not error on a non-tool model; it will silently produce these
+  pathologies instead.
+- **2026-04-21 iter 5 — MODEL SWAP #2.** Switched to
+  `nvidia/nemotron-3-super-120b-a12b` (Nemotron 3 Super, 120B MoE with 12B
+  active params, 262K/262K context/output). Registry confirms
+  `capabilities.toolcall: true` and `capabilities.reasoning: true`. This is
+  the direct upgrade path from the Super 49B family into a tool-capable,
+  reasoning-enabled model. Running the binary-pass smoke probe against this
+  model next.
 
 ## Real prompt (send only after smoke probe is clean)
 
