@@ -9,9 +9,11 @@ without first running the smoke probe below. Derived from the Tester template in
 | Field       | Value |
 |-------------|-------|
 | `agent`     | `build` |
-| `model`     | `nvidia/llama-3.3-nemotron-super-49b-v1` |
+| `model`     | `nvidia / mistralai/devstral-2-123b-instruct-2512` |
 | `variant`   | `medium` |
 | `directory` | `C:\Users\theca\Documents\Claude\Projects\Fine Tune OpenCode\span-buddy` |
+
+API payload fields: `providerID = "nvidia"`, `modelID = "mistralai/devstral-2-123b-instruct-2512"`. Super 49B (`nvidia/llama-3.3-nemotron-super-49b-v1`) was the original model; it was swapped out after three failed smoke probes (see Iteration log).
 
 Driver discipline (from `feedback_director_vs_doer.md` and the Super 49B
 pathologies in `TEAM.md`):
@@ -91,6 +93,27 @@ Do not advance to the real task below until the probe passes.
   text line + binary pass (no content extraction). Same pattern applied to
   the real prompt's path-style section below. This is a generalized Super 49B
   workmanship rule: **never stack negatives, always show the shape you want.**
+- **2026-04-21 iter 3 — FAILED (partial).** Positive-only probe with a JSON
+  code-fence example. Super 49B *did* call the `read` tool (progress over
+  iter-2's skip-the-tool), but passed an empty input object `{}` — no
+  `filePath` argument at all. Tool returned a schema validation error
+  (`Invalid input: expected string, received undefined`), the model gave
+  up and jumped to `FINAL: probe ok`. Dump at
+  `.opencode-runs/2026-04-21-probe3-ses_24d0361d9ffefcPTd0ptWrwz4z.json`.
+  **Diagnosis:** three smoke iterations, three distinct pathologies on a
+  100-token task (absolute-path space-stripping, tool-skip, empty input).
+  Super 49B is structurally unreliable at building tool calls against this
+  project path.
+- **2026-04-21 iter 4 — MODEL SWAP.** Switched to
+  `nvidia / mistralai/devstral-2-123b-instruct-2512` (Devstral 123B). Rationale:
+  Devstral is a code-specialist model; 262K/262K context/output; stays inside
+  the NVIDIA provider (this project is an NVIDIA-on-OpenCode benchmarking
+  testbed). Kept the positive-only tool-call spec and the binary-pass smoke
+  probe — they're good practice regardless of model and protect the prompt if
+  it's ever re-run on a Super-49B-class model. Re-running the smoke probe on
+  the new model. If Devstral also fails the probe, escalate to the human
+  director — at that point the evidence is that the driver / OpenCode wrapper
+  is at fault, not the model.
 
 ## Real prompt (send only after smoke probe is clean)
 
