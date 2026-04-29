@@ -13,16 +13,16 @@ import { DISCLAIMER_TEXT } from "@/components/ui/DisclaimerBanner";
  */
 
 test("RootLayout with Home renders DisclaimerBanner", async () => {
-  const html = renderToStaticMarkup(<RootLayout children={<Home />} />);
+  const html = renderToStaticMarkup(<RootLayout><Home /></RootLayout>);
   expect(html).toContain(DISCLAIMER_TEXT);
 });
 
 test("RootLayout with Home renders home heading", async () => {
-  const html = renderToStaticMarkup(<RootLayout children={<Home />} />);
+  const html = renderToStaticMarkup(<RootLayout><Home /></RootLayout>);
   expect(html).toContain("Hello, Span Buddy");
 });
 
 test("RootLayout with NotFound renders DisclaimerBanner", async () => {
-  const html = renderToStaticMarkup(<RootLayout children={<NotFound />} />);
+  const html = renderToStaticMarkup(<RootLayout><NotFound /></RootLayout>);
   expect(html).toContain(DISCLAIMER_TEXT);
 });
