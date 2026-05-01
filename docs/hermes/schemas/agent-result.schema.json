@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Developer Agent Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "ticket_id",
+    "agent_id",
+    "role",
+    "team",
+    "branch",
+    "status",
+    "files_changed",
+    "commands_run",
+    "acceptance_checklist",
+    "signoff"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "ticket_id": {
+      "type": "string"
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "role": {
+      "const": "developer"
+    },
+    "team": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "worktree": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pushed": {
+      "type": "boolean"
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "blocked",
+        "failed"
+      ]
+    },
+    "files_changed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commands_run": {
+      "type": "array"
+    },
+    "acceptance_checklist": {
+      "type": "array"
+    },
+    "known_risks": {
+      "type": "array"
+    },
+    "blockers": {
+      "type": "array"
+    },
+    "signoff": {
+      "type": "object"
+    }
+  }
+}

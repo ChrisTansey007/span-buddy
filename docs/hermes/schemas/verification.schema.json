@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Team 3 Verification",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "ticket_id",
+    "agent_id",
+    "role",
+    "verdict",
+    "commands_run",
+    "security_findings",
+    "test_findings",
+    "signoff"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "ticket_id": {
+      "type": "string"
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "role": {
+      "const": "verification"
+    },
+    "reviewed_commits": {
+      "type": "array"
+    },
+    "verdict": {
+      "enum": [
+        "release_accept",
+        "reject",
+        "risk_accept_required"
+      ]
+    },
+    "commands_run": {
+      "type": "array"
+    },
+    "security_findings": {
+      "type": "array"
+    },
+    "test_findings": {
+      "type": "array"
+    },
+    "release_notes": {
+      "type": "array"
+    },
+    "signoff": {
+      "type": "object"
+    }
+  }
+}

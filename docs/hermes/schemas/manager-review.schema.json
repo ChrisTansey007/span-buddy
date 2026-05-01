@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Manager Review",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "ticket_id",
+    "agent_id",
+    "role",
+    "team",
+    "reviewed_branch",
+    "verdict",
+    "scope_check",
+    "commands_run",
+    "signoff"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "ticket_id": {
+      "type": "string"
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "manager",
+        "product-manager"
+      ]
+    },
+    "team": {
+      "type": "string"
+    },
+    "reviewed_branch": {
+      "type": "string"
+    },
+    "reviewed_commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verdict": {
+      "enum": [
+        "approve",
+        "reject",
+        "needs_changes",
+        "defer"
+      ]
+    },
+    "scope_check": {
+      "enum": [
+        "pass",
+        "fail",
+        "not_run"
+      ]
+    },
+    "commands_run": {
+      "type": "array"
+    },
+    "required_fixes": {
+      "type": "array"
+    },
+    "signoff": {
+      "type": "object"
+    }
+  }
+}
