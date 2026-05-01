@@ -31,4 +31,9 @@
 ## GitHub Credential Access
 
 The configured Span Buddy Hermes profiles do not contain GitHub tokens or profile-local `.env` credential files. They rely on the shared Windows GitHub CLI keyring via the documented WSL bridge in `docs/hermes/github-auth-runbook.md`. This is intentional: credentials stay outside repository docs and outside profile configs while managers still have an explicit, repeatable push procedure.
+## Profile Runtime CWD
+All Span Buddy manager profiles have `terminal.cwd` configured to `/tmp/span-buddy` so profile-run file tools and terminal commands resolve project-relative docs such as `docs/hermes/ticket-backlog.md` correctly.
+
+## Free-Model Rate Limit Note
+Do not launch all five manager profiles simultaneously on the same OpenRouter free model route. A concurrent kickoff attempt hit `HTTP 429 free-models-per-min`. Prefer staggered cron/manager runs or sequential launches when using `nvidia/nemotron-3-super-120b-a12b:free`.
 
