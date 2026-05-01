@@ -1,0 +1,78 @@
+schema_version: 1.0.0
+project: Span Buddy
+lanes:
+  product_manager:
+    display_name: "Product Manager"
+    manager_profile: span-buddy-product-manager
+    owner: "Product Manager"
+    active_ticket: SB-PM-001
+    assigned_model: free-router-model
+    default_branch: hermes/product/SB-PM-001-governance
+    default_worktree: .hermes/worktrees/SB-PM-001
+    allowed_concurrency: 1
+    responsibilities:
+      - roadmap
+      - backlog
+      - priorities
+      - ticket_promotion
+      - scope_control
+  team1_core_engine:
+    display_name: "Team 1 — Core / Engine"
+    manager_profile: span-buddy-team1-manager
+    owner: "Team 1 Manager"
+    active_ticket: SB-T1-001
+    assigned_model: free-router-model
+    default_branch: hermes/team1/SB-T1-001-engine-contracts
+    default_worktree: .hermes/worktrees/SB-T1-001
+    allowed_concurrency: 1
+    responsibilities:
+      - calculation_logic
+      - schemas
+      - result_contracts
+      - engine_correctness
+  team2_product_ui:
+    display_name: "Team 2 — Product / UI"
+    manager_profile: span-buddy-team2-manager
+    owner: "Team 2 Manager"
+    active_ticket: SB-T2-001
+    assigned_model: free-router-model
+    default_branch: hermes/team2/SB-T2-001-ui-flow
+    default_worktree: .hermes/worktrees/SB-T2-001
+    allowed_concurrency: 1
+    responsibilities:
+      - user_flow
+      - forms
+      - display
+      - mobile_usability
+      - accessibility
+      - safe_wording
+  team3_verification_safety:
+    display_name: "Team 3 — Verification / Safety"
+    manager_profile: span-buddy-team3-manager
+    owner: "Team 3 Manager"
+    active_ticket: SB-T3-001
+    assigned_model: free-router-model
+    default_branch: hermes/team3/SB-T3-001-verification
+    default_worktree: .hermes/worktrees/SB-T3-001
+    allowed_concurrency: 1
+    responsibilities:
+      - tests
+      - lint
+      - build
+      - security
+      - liability_wording
+      - independent_verification
+  team4_rd:
+    display_name: "Team 4 — R&D"
+    manager_profile: span-buddy-team4-manager
+    owner: "Team 4 R&D Manager"
+    active_ticket: SB-T4-001
+    assigned_model: free-router-model
+    default_branch: hermes/team4/SB-T4-001-rd-map
+    default_worktree: .hermes/worktrees/SB-T4-001
+    allowed_concurrency: 1
+    responsibilities:
+      - research_spikes
+      - source_mapping
+      - feasibility_notes
+      - candidate_ticket_creation

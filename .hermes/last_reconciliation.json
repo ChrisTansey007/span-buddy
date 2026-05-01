@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "timestamp": "2026-05-01T14:28:54.707Z",
+  "reason": "resume",
+  "git": {
+    "status_short": "## main...origin/main\n M AGENTS.md\n M app/layout.integration.test.tsx\n M package.json\n?? .hermes/\n?? CLAUDE_SESSION_KICKOFF.md\n?? docs/hermes/\n?? scripts/hermes/",
+    "status_exit_code": 0,
+    "branches": "* main\n  remotes/origin/main",
+    "branches_exit_code": 0,
+    "worktrees": "worktree /mnt/c/Users/theca/Documents/Claude/Projects/Fine Tune OpenCode/span-buddy\nHEAD da37d84a98ed5115cf4e3008c03038a9fad3426a\nbranch refs/heads/main",
+    "worktrees_exit_code": 0
+  },
+  "lanes": [
+    {
+      "lane": "product_manager",
+      "display_name": "Product Manager",
+      "status": "planned",
+      "active_ticket": "SB-PM-001",
+      "ticket_state": "planned",
+      "branch": "hermes/product/SB-PM-001-governance",
+      "worktree": ".hermes/worktrees/SB-PM-001",
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "verification_status": "not_started",
+      "conservative_classification": "planned"
+    },
+    {
+      "lane": "team1_core_engine",
+      "display_name": "Team 1 — Core / Engine",
+      "status": "planned",
+      "active_ticket": "SB-T1-001",
+      "ticket_state": "planned",
+      "branch": "hermes/team1/SB-T1-001-engine-contracts",
+      "worktree": ".hermes/worktrees/SB-T1-001",
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "verification_status": "not_started",
+      "conservative_classification": "planned"
+    },
+    {
+      "lane": "team2_product_ui",
+      "display_name": "Team 2 — Product / UI",
+      "status": "planned",
+      "active_ticket": "SB-T2-001",
+      "ticket_state": "planned",
+      "branch": "hermes/team2/SB-T2-001-ui-flow",
+      "worktree": ".hermes/worktrees/SB-T2-001",
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "verification_status": "not_started",
+      "conservative_classification": "planned"
+    },
+    {
+      "lane": "team3_verification_safety",
+      "display_name": "Team 3 — Verification / Safety",
+      "status": "planned",
+      "active_ticket": "SB-T3-001",
+      "ticket_state": "planned",
+      "branch": "hermes/team3/SB-T3-001-verification",
+      "worktree": ".hermes/worktrees/SB-T3-001",
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "verification_status": "not_started",
+      "conservative_classification": "planned"
+    },
+    {
+      "lane": "team4_rd",
+      "display_name": "Team 4 — R&D",
+      "status": "planned",
+      "active_ticket": "SB-T4-001",
+      "ticket_state": "planned",
+      "branch": "hermes/team4/SB-T4-001-rd-map",
+      "worktree": ".hermes/worktrees/SB-T4-001",
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "verification_status": "not_started",
+      "conservative_classification": "planned"
+    }
+  ],
+  "notes": [
+    "Conservative reconciliation only; no agents were launched.",
+    "A lane is not active unless process/run evidence is present."
+  ]
+}

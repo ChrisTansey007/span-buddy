@@ -12,6 +12,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "hermes:validate": "node scripts/hermes/validate-control-plane.mjs",
+    "hermes:reconcile": "node scripts/hermes/reconcile.mjs",
+    "hermes:resume": "node scripts/hermes/resume.mjs",
+    "hermes:test": "node --test scripts/hermes/*.test.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -23,8 +27,8 @@
   },
   "devDependencies": {
     "@playwright/test": "1.48.2",
-    "@testing-library/jest-dom": "6.9.1",
-    "@testing-library/react": "16.3.2",
+    "@testing-library/jest-dom": "6.5.0",
+    "@testing-library/react": "16.0.1",
     "@types/node": "20.16.11",
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.0",

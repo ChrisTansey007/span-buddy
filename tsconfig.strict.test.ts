@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "fs";
-import * as path from "path";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 /**
  * Guardrail test: tsconfig strictness cannot be quietly loosened.
@@ -19,7 +19,7 @@ import * as path from "path";
  * mangle into invalid JSON.
  */
 describe("tsconfig strictness", () => {
-  const raw = readFileSync(path.join(__dirname, "tsconfig.json"), "utf-8");
+  const raw = readFileSync(join(__dirname, "tsconfig.json"), "utf-8");
   // Strip UTF-8 BOM if present so JSON.parse doesn't trip on it.
   const normalized = raw.replace(/^\uFEFF/, "");
   const config = JSON.parse(normalized) as {
