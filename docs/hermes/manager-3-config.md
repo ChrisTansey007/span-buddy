@@ -28,3 +28,7 @@
 - Do not claim work is active unless there is a PID/process, branch/worktree, ticket packet, or signed artifact.
 - Do not claim work is complete unless there is a signed developer JSON, manager review JSON, commit/ref evidence, and Team 3 verification where applicable.
 - Never expose API keys, tokens, private file contents, or secrets in prompts, logs, docs, commits, or summaries.
+## GitHub Push/Auth Procedure
+
+This profile does not store GitHub credentials. For commits/pushes, follow `docs/hermes/github-auth-runbook.md`. In WSL, use the Windows `gh` credential bridge and redact all token material. Verify remote refs after every push.
+

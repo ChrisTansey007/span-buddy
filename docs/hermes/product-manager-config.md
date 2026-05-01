@@ -30,3 +30,7 @@ Keep Span Buddy moving as a safe, useful residential structural preliminary-sizi
 - `engine/` must stay framework-independent.
 - No hand-transcribed IRC span numbers in source.
 - OpenRouter free-models-only policy for AI work.
+## GitHub Push/Auth Procedure
+
+This profile does not store GitHub credentials. For commits/pushes, follow `docs/hermes/github-auth-runbook.md`. In WSL, use the Windows `gh` credential bridge and redact all token material. Verify remote refs after every push.
+

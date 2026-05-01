@@ -28,3 +28,7 @@
 - `manager-*-config.md` files are role/persona configuration files.
 - The real Hermes profiles above now exist and are configured to use the same validated Nemotron free model.
 - Cron jobs also explicitly pin the same model, so scheduled manager runs do not depend on whichever profile is currently active.
+## GitHub Credential Access
+
+The configured Span Buddy Hermes profiles do not contain GitHub tokens or profile-local `.env` credential files. They rely on the shared Windows GitHub CLI keyring via the documented WSL bridge in `docs/hermes/github-auth-runbook.md`. This is intentional: credentials stay outside repository docs and outside profile configs while managers still have an explicit, repeatable push procedure.
+
