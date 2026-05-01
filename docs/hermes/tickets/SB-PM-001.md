@@ -1,0 +1,53 @@
+# Ticket Packet: SB-PM-001 — Create and maintain ticket governance, backlog ordering, and evidence rules
+
+Status: Ready for assignment
+Created: 2026-05-01T05:06:51.563051+00:00
+Priority: P0
+
+## Product Story
+As product owner, I want a governed ticket backlog so all managers know what to run next and how to report evidence.
+
+## Ownership
+- Team: Product Manager
+- Manager/Profile: span-buddy-product-manager
+- Developer Persona: Product manager
+- Area: PM
+- Branch: `hermes/pm/ticket-governance`
+- Worktree: `/tmp/span-buddy-worktrees/sb-pm-001`
+
+## Scope
+Allowed files/directories:
+- `docs/hermes/**`
+
+Disallowed files/directories:
+- `components/ui/DisclaimerBanner.tsx` unless RFC-approved and disclaimer meaning is preserved
+- `tsconfig.json` strictness flags unless explicitly preserving or tightening them
+- Raw credentials, tokens, or key material anywhere
+- Production structural span data unless manually verified and cited
+
+## Context
+- Relevant docs/code paths: `PROJECT_PLAN.md`, `README.md`, `docs/hermes/operating-model.md`, `docs/hermes/proof-and-gates.md`
+- Prior decisions: OpenRouter free model only; PE-review disclaimer cannot be weakened; all engineering outputs must be traceable.
+
+## Acceptance Criteria
+- [ ] Ticket queue exists with Now/Next/Later status
+- [ ] Every ticket has owner, branch, acceptance criteria, required evidence
+- [ ] PM cadence includes adding tickets from R&D findings
+- [ ] No code behavior changes
+
+## Required Commands
+- [ ] `pnpm lint`
+- [ ] `pnpm typecheck`
+- [ ] `pnpm test -- --run` or `pnpm test` as applicable
+- [ ] `pnpm test:e2e` when UI/user flow affected
+- [ ] `pnpm build`
+
+## Required Evidence
+- Developer result JSON in `docs/hermes/agent-results/`
+- Manager review JSON in `docs/hermes/manager-reviews/`
+- Team 3 verification JSON in `docs/hermes/verification/` if code or release behavior changed
+- Commit hash and remote ref if files changed
+- Updated `docs/hermes/integration-log.md`, `status-board.md`, and relevant team plan
+
+## Kickoff Prompt
+Read this ticket packet, your persona file, your manager config, `docs/hermes/proof-and-gates.md`, and `docs/hermes/github-auth-runbook.md`. Work only in the assigned branch/worktree. Preserve safety disclaimers. Do not invent structural values. Produce signed evidence before claiming completion.

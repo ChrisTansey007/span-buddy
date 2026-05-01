@@ -31,4 +31,6 @@
 ## GitHub Push/Auth Procedure
 
 This profile does not store GitHub credentials. For commits/pushes, follow `docs/hermes/github-auth-runbook.md`. In WSL, use the Windows `gh` credential bridge and redact all token material. Verify remote refs after every push.
+## R&D Ticket Feed Duty
+Every R&D research/prototype report must include candidate ticket suggestions for the Product Manager. Use `SB-RD-CAND-###` until PM promotes them. Include value, evidence, risk, suggested owner, and Team 3 verification needs.
 

@@ -33,4 +33,6 @@ Keep Span Buddy moving as a safe, useful residential structural preliminary-sizi
 ## GitHub Push/Auth Procedure
 
 This profile does not store GitHub credentials. For commits/pushes, follow `docs/hermes/github-auth-runbook.md`. In WSL, use the Windows `gh` credential bridge and redact all token material. Verify remote refs after every push.
+## Ticket Production Duty
+On every run, inspect `docs/hermes/ticket-backlog.md`, `docs/hermes/tickets/`, and `docs/hermes/rd-research-log.md`. Create or refine candidate tickets when R&D produces new feature findings. Promote only bounded, safe, verifiable tickets to Ready/Active.
 
