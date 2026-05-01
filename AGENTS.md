@@ -96,3 +96,42 @@ empty-text-part on long prose). In short:
 3. Check `PROJECT_PLAN.md` for phase scope and deliverables.
 4. If still unclear, stop and ask the director via the `FINAL:` line with a
    question rather than guessing.
+
+
+## Durable Hermes control plane
+
+This repository is the source of truth for the multi-agent team system. Chat
+memory, Hermes profile history, temporary folders, and kickoff reports are not
+sufficient evidence by themselves.
+
+Before starting or resuming team work, agents must read:
+
+1. `.hermes/current_state.json`
+2. `.hermes/tickets.yaml`
+3. `.hermes/lanes.yaml`
+4. `.hermes/events.jsonl`
+5. `docs/hermes/resume-runbook.md`
+6. `docs/hermes/proof-and-gates.md`
+
+Evidence levels are explicit. A profile existing is not a running team. A
+kickoff report is not delivered work. A local diff is not pushed work. A commit
+is not verified work. A verified branch is not merged work.
+
+The safe resume entrypoint is the Hermes control-plane resume command:
+
+```bash
+pnpm hermes:resume
+```
+
+For lower-level checks:
+
+```bash
+pnpm hermes:validate
+pnpm hermes:reconcile
+pnpm hermes:test
+```
+
+`hermes:resume` reconciles and prints `.hermes/resume-board.md`. It does not
+launch agents; launching requires an explicit follow-up command and fresh
+evidence checks. Use `.hermes/locks/` to avoid duplicate work on the same lane
+or ticket.

@@ -1,0 +1,12 @@
+# Ticket SB-PM-001 — Create and maintain durable ticket governance and backlog controls
+
+Status: planned
+
+The machine-readable source of truth for this ticket is `.hermes/tickets.yaml`.
+This document exists for human review and manager prompting.
+
+## Evidence boundary
+
+This ticket is seeded as planned with `ticket_exists` evidence only. It is not
+assigned, launched, running, reviewed, verified, pushed, or merged until the
+control plane records matching evidence.

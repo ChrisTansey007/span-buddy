@@ -12,6 +12,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "hermes:validate": "node scripts/hermes/validate-control-plane.mjs",
+    "hermes:reconcile": "node scripts/hermes/reconcile.mjs",
+    "hermes:resume": "node scripts/hermes/resume.mjs",
+    "hermes:test": "node --test scripts/hermes/*.test.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {

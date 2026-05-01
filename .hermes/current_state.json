@@ -1,0 +1,81 @@
+{
+  "project": "Span Buddy",
+  "schema_version": "1.0.0",
+  "current_wave": "wave-001",
+  "current_phase": "durable-control-plane-foundation",
+  "last_reconciliation_time": "2026-05-01T14:28:54.707Z",
+  "last_verified_commit": null,
+  "next_safe_action": "Review resume board, then explicitly launch only eligible lanes with fresh locks and run evidence.",
+  "lanes": {
+    "product_manager": {
+      "status": "planned",
+      "active_ticket": "SB-PM-001",
+      "assigned_model": "free-router-model",
+      "branch": null,
+      "worktree": null,
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "lock_id": null,
+      "blocked_reason": null,
+      "verification_status": "not_started"
+    },
+    "team1_core_engine": {
+      "status": "planned",
+      "active_ticket": "SB-T1-001",
+      "assigned_model": "free-router-model",
+      "branch": null,
+      "worktree": null,
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "lock_id": null,
+      "blocked_reason": null,
+      "verification_status": "not_started"
+    },
+    "team2_product_ui": {
+      "status": "planned",
+      "active_ticket": "SB-T2-001",
+      "assigned_model": "free-router-model",
+      "branch": null,
+      "worktree": null,
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "lock_id": null,
+      "blocked_reason": null,
+      "verification_status": "not_started"
+    },
+    "team3_verification_safety": {
+      "status": "planned",
+      "active_ticket": "SB-T3-001",
+      "assigned_model": "free-router-model",
+      "branch": null,
+      "worktree": null,
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "lock_id": null,
+      "blocked_reason": null,
+      "verification_status": "not_started"
+    },
+    "team4_rd": {
+      "status": "planned",
+      "active_ticket": "SB-T4-001",
+      "assigned_model": "free-router-model",
+      "branch": null,
+      "worktree": null,
+      "run_id": null,
+      "evidence": [
+        "ticket_exists"
+      ],
+      "lock_id": null,
+      "blocked_reason": null,
+      "verification_status": "not_started"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "project": "Span Buddy",
+  "policy": "openrouter_free_models_only",
+  "max_concurrent_model_jobs": 2,
+  "launch_strategy": "staggered",
+  "backoff_seconds": [
+    60,
+    180,
+    300
+  ],
+  "automatic_paid_fallback": false,
+  "notes": [
+    "Use small bounded prompts.",
+    "Resume from summaries and state files.",
+    "Do not blast-launch all managers."
+  ]
+}
