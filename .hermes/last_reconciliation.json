@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "timestamp": "2026-05-01T14:28:54.707Z",
+  "timestamp": "2026-05-02T03:39:37.256Z",
   "reason": "resume",
   "git": {
-    "status_short": "## main...origin/main\n M AGENTS.md\n M app/layout.integration.test.tsx\n M package.json\n?? .hermes/\n?? CLAUDE_SESSION_KICKOFF.md\n?? docs/hermes/\n?? scripts/hermes/",
+    "status_short": "## hermes/team2/SB-T2-001-ui-flow...origin/hermes/team2/SB-T2-001-ui-flow\n?? DEVELOPMENT_UPDATE.md\n?? FINAL_SUMMARY.md\n?? PHASE_1_SUMMARY.md\n?? PHASE_2_COMPLETE.md\n?? PHASE_2_SUMMARY.md\n?? PROGRESS_REPORT.md\n?? RESPONSE_TO_USER.md\n?? SUMMARY.md\n?? TASK_COMPLETED.md\n?? TEAM_UPDATE.md\n?? USER_REQUEST_RESPONSE.md\n?? app/calculator/\n?? basic.test.ts\n?? components/ui/WorkspaceInput.tsx\n?? data/irc-2021/R502.3.1(1).json\n?? data/irc-2021/R502.3.1(2).json\n?? data/irc-2021/R502.5(1).json\n?? data/irc-2021/README.md\n?? debug.js\n?? docs/rfcs/002-floor-joist-engine.md\n?? docs/rfcs/003-header-beam-engine.md\n?? docs/rfcs/003-header-girder-engine.md\n?? engine/basicTest.ts\n?? engine/debugTest.ts\n?? engine/debugTest2.ts\n?? engine/importTest.ts\n?? engine/pathTest.ts\n?? engine/simpleImportTest.ts\n?? engine/sizeFloorJoist.test.ts\n?? engine/sizeFloorJoist.ts\n?? engine/sizeFloorJoist40psf.test.ts\n?? engine/sizeFloorJoist40psf.ts\n?? engine/sizeHeader.test.ts\n?? engine/sizeHeader.ts\n?? isolatedTest.js\n?? pathTest.test.ts\n?? simpleTest.js\n?? simpleVerification.test.ts\n?? testDebug.js",
     "status_exit_code": 0,
-    "branches": "* main\n  remotes/origin/main",
+    "branches": "* hermes/team2/SB-T2-001-ui-flow\n  main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/hermes-control-plane-foundation\n  remotes/origin/hermes/team2/SB-T2-001-ui-flow\n  remotes/origin/main",
     "branches_exit_code": 0,
-    "worktrees": "worktree /mnt/c/Users/theca/Documents/Claude/Projects/Fine Tune OpenCode/span-buddy\nHEAD da37d84a98ed5115cf4e3008c03038a9fad3426a\nbranch refs/heads/main",
+    "worktrees": "worktree /home/theca/hermes-agent/span-buddy\nHEAD 33b2f746ecea6e57a4eb7564ae7c228dc5e07632\nbranch refs/heads/hermes/team2/SB-T2-001-ui-flow",
     "worktrees_exit_code": 0
   },
   "lanes": [
