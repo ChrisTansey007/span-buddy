@@ -1,6 +1,6 @@
 # Hermes Resume Board
 
-Generated: 2026-05-01T14:28:54.707Z
+Generated: 2026-05-02T03:39:37.256Z
 Reason: resume
 Wave: wave-001
 Phase: durable-control-plane-foundation
@@ -8,14 +8,46 @@ Phase: durable-control-plane-foundation
 ## Git evidence
 
 ```text
-## main...origin/main
- M AGENTS.md
- M app/layout.integration.test.tsx
- M package.json
-?? .hermes/
-?? CLAUDE_SESSION_KICKOFF.md
-?? docs/hermes/
-?? scripts/hermes/
+## hermes/team2/SB-T2-001-ui-flow...origin/hermes/team2/SB-T2-001-ui-flow
+?? DEVELOPMENT_UPDATE.md
+?? FINAL_SUMMARY.md
+?? PHASE_1_SUMMARY.md
+?? PHASE_2_COMPLETE.md
+?? PHASE_2_SUMMARY.md
+?? PROGRESS_REPORT.md
+?? RESPONSE_TO_USER.md
+?? SUMMARY.md
+?? TASK_COMPLETED.md
+?? TEAM_UPDATE.md
+?? USER_REQUEST_RESPONSE.md
+?? app/calculator/
+?? basic.test.ts
+?? components/ui/WorkspaceInput.tsx
+?? data/irc-2021/R502.3.1(1).json
+?? data/irc-2021/R502.3.1(2).json
+?? data/irc-2021/R502.5(1).json
+?? data/irc-2021/README.md
+?? debug.js
+?? docs/rfcs/002-floor-joist-engine.md
+?? docs/rfcs/003-header-beam-engine.md
+?? docs/rfcs/003-header-girder-engine.md
+?? engine/basicTest.ts
+?? engine/debugTest.ts
+?? engine/debugTest2.ts
+?? engine/importTest.ts
+?? engine/pathTest.ts
+?? engine/simpleImportTest.ts
+?? engine/sizeFloorJoist.test.ts
+?? engine/sizeFloorJoist.ts
+?? engine/sizeFloorJoist40psf.test.ts
+?? engine/sizeFloorJoist40psf.ts
+?? engine/sizeHeader.test.ts
+?? engine/sizeHeader.ts
+?? isolatedTest.js
+?? pathTest.test.ts
+?? simpleTest.js
+?? simpleVerification.test.ts
+?? testDebug.js
 ```
 
 ## Lane status
