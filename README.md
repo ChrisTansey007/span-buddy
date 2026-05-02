@@ -27,3 +27,7 @@ Next.js 14 App Router · TypeScript (strict) · Tailwind CSS · shadcn/ui · Zod
 ## License
 
 MIT (planned — finalize before first public tag).
+
+## Development Started
+
+Development of the joist span calculator began on Sat May  2 12:49:25 EDT 2026.
