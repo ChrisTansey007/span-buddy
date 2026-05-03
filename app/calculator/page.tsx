@@ -1,6 +1,7 @@
+"use client";
+
 import { useState } from 'react';
 import { sizeFloorJoist } from '@/engine/sizeFloorJoist';
-import { sizeFloorJoist40psf } from '@/engine/sizeFloorJoist40psf';
 import { sizeHeader } from '@/engine/sizeHeader';
 import { JoistInput } from '@/components/ui/JoistInput';
 import { HeaderInput } from '@/components/ui/HeaderInput';
@@ -32,16 +33,8 @@ export default function Calculator() {
       const species = data.speciesGrade.slice(0, lastSpaceIndex);
       const grade = data.speciesGrade.slice(lastSpaceIndex + 1);
 
-      let res;
-      if (liveLoad === 30) {
-        res = sizeFloorJoist(spanInches, spacing, species, grade, liveLoad);
-      } else if (liveLoad === 40) {
-        res = sizeFloorJoist40psf(spanInches, spacing, species, grade);
-      } else {
-        setError('Invalid live load selection');
-        setLoading(false);
-        return;
-      }
+      // Use the unified sizeFloorJoist function for both 30 and 40 psf
+      const res = sizeFloorJoist(spanInches, spacing, species, grade, liveLoad);
 
       if (res.ok) {
         setResult(res);

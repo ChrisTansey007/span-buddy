@@ -10,7 +10,7 @@
 export const DISCLAIMER_TEXT =
   "Preliminary sizing aid. Verify with a licensed PE before construction. This tool does not stamp or seal engineering work.";
 
-export function DisclaimerBanner(): JSX.Element {
+export function DisclaimerBanner(): React.ReactNode {
   return (
     <div
       role="alert"

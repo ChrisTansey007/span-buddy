@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function JoistInput({ onSubmit }: { onSubmit: (data: JoistFormData) => void }): JSX.Element {
+export function JoistInput({ onSubmit }: { onSubmit: (data: JoistFormData) => void }): React.ReactNode {
   const [formData, setFormData] = useState<JoistFormData>({
     projectLabel: '',
     spanFeet: '',

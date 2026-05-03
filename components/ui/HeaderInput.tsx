@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function HeaderInput({ onSubmit }: { onSubmit: (data: HeaderFormData) => void }): JSX.Element {
+export function HeaderInput({ onSubmit }: { onSubmit: (data: HeaderFormData) => void }): React.ReactNode {
   const [formData, setFormData] = useState<HeaderFormData>({
     projectLabel: '',
     headerSpanFeet: '',

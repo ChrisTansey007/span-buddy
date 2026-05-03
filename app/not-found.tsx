@@ -1,4 +1,4 @@
-export default function NotFound(): JSX.Element {
+export default function NotFound(): React.ReactNode {
   return (
     <div className="text-center">
       <h1 className="text-2xl font-semibold">404 — Page not found</h1>

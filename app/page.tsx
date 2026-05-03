@@ -1,4 +1,4 @@
-export default function Home(): JSX.Element {
+export default function Home(): React.ReactNode {
   return (
     <div className="text-center">
       <h1 className="text-3xl font-semibold tracking-tight">Hello, Span Buddy</h1>

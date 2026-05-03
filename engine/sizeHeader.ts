@@ -1,6 +1,5 @@
 // engine/sizeHeader.ts
-import { readFileSync } from 'node:fs';
-import { join } from 'path';
+import tableR502_5_1 from '@/data/irc-2021/R502.5(1).json';
 
 export interface HeaderSpec {
   size: string; // e.g., "2x8", "2x10", "2-2x8" (double 2x8), "3-2x8" (triple 2x8)
@@ -9,7 +8,6 @@ export interface HeaderSpec {
   grade: string;
   allowableSpan: number; // maximum allowable span from tables
   utilization: number; // span / allowableSpan (should be <= 1.0)
-  // For headers, we might also want to know the number of plies
   plies: number; // 1, 2, or 3
 }
 
@@ -26,20 +24,20 @@ export interface EngineResult<T> {
 // Cache for loaded tables to avoid reading file on every call
 const tableCache: Record<string, any> = {};
 
-function loadTable(): any {
-  // For headers, we use R502.5(1) - Girders & headers — exterior bearing walls
-  const tableName = 'R502.5(1)';
+function loadTable(tableName: string): any {
   if (tableCache[tableName]) {
     return tableCache[tableName];
   }
-  const filePath = join(process.cwd(), 'data', 'irc-2021', `${tableName}.json`);
-  try {
-    const tableData = JSON.parse(readFileSync(filePath, 'utf-8'));
-    tableCache[tableName] = tableData;
-    return tableData;
-  } catch (error) {
-    throw new Error(`Failed to load span table ${tableName}: ${error instanceof Error ? error.message : String(error)}`);
+  let tableData: any;
+  switch (tableName) {
+    case 'R502.5(1)':
+      tableData = tableR502_5_1;
+      break;
+    default:
+      throw new Error(`Unknown table: ${tableName}`);
   }
+  tableCache[tableName] = tableData;
+  return tableData;
 }
 
 export function sizeHeader(
@@ -73,7 +71,9 @@ export function sizeHeader(
   }
 
   try {
-    const table = loadTable();
+    // For headers, we use R502.5(1) - Girders & headers — exterior bearing walls
+    const tableName = 'R502.5(1)';
+    const table = loadTable(tableName);
 
     // Find the species and grade in the table
     const speciesData = table.data[species];
@@ -101,7 +101,7 @@ export function sizeHeader(
     if (!loadWidthData) {
       return {
         ok: false,
-        reason: `Load width ${loadWidthInches}\\" not found for ${species} #${grade}`,
+        reason: `Load width ${loadWidthInches}\" not found for ${species} #${grade}`,
         detail: [`Available load widths: ${Object.keys(gradeData).map(k => parseFloat(k)).join(', ')} inches`]
       };
     }
@@ -154,7 +154,7 @@ export function sizeHeader(
         ok: false,
         reason: 'No suitable header size found',
         detail: [
-          `Maximum allowable span for ${species} #${grade} at ${loadWidthInches}\\" load width: ${maxSpanInInches} inches`,
+          `Maximum allowable span for ${species} #${grade} at ${loadWidthInches}\" load width: ${maxSpanInInches} inches`,
           `Requested span: ${spanInches} inches`,
           'Consider: reducing span, increasing header size, reducing load width, or changing species/grade'
         ],
