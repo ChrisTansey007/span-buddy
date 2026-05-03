@@ -24,7 +24,7 @@ export function HeaderInput({ onSubmit }: { onSubmit: (data: HeaderFormData) => 
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md" aria-label="Header/Girder Inputs Form">
       <h2 className="mb-4 text-xl font-semibold">Header/Girder Inputs</h2>
       
       <div className="mb-4">
