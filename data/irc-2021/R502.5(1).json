@@ -1,0 +1,70 @@
+{
+  "table": "R502.5(1)",
+  "description": "Girder spans and header spans for exterior bearing walls",
+  "source": "International Residential Code (IRC) 2021, Table R502.5(1)",
+  "assumptions": [
+    "Ground snow load: 30 psf",
+    "Live load: 40 psf",
+    "Dead load: 10 psf",
+    "Depth of header = 2 x nominal width of joist",
+    "NOTE: This is placeholder data. Replace with actual IRC 2021 table values."
+  ],
+  "supported": [
+    "Roof and ceiling only",
+    "Roof, ceiling, and one center-bearing floor",
+    "Roof, ceiling, and two clear span floors",
+    "Roof, ceiling, and one clear span floor",
+    "Roof, ceiling, and two center-bearing floors",
+    "Exterior wall",
+    "Interior wall"
+  ],
+  "species": [
+    "Southern Pine",
+    "Douglas Fir-Larch",
+    "Hem-Fir",
+    "Spruce-Pine-Fir"
+  ],
+  "grades": ["#1", "#2", "#3"],
+  "data": {
+    "Southern Pine": {
+      "#2": {
+        "12.0": {
+          "2-2x6": 4.7,
+          "2-2x8": 5.9,
+          "2-2x10": 7.0,
+          "2-2x12": 8.1,
+          "3-2x8": 7.2,
+          "3-2x10": 8.9,
+          "3-2x12": 10.2,
+          "4-2x8": 9.0,
+          "4-2x10": 10.3,
+          "4-2x12": 11.8
+        },
+        "16.0": {
+          "2-2x6": 4.1,
+          "2-2x8": 5.1,
+          "2-2x10": 6.1,
+          "2-2x12": 7.0,
+          "3-2x8": 6.2,
+          "3-2x10": 7.7,
+          "3-2x12": 8.9,
+          "4-2x8": 7.8,
+          "4-2x10": 8.9,
+          "4-2x12": 10.2
+        },
+        "24.0": {
+          "2-2x6": 3.4,
+          "2-2x8": 4.2,
+          "2-2x10": 5.0,
+          "2-2x12": 5.8,
+          "3-2x8": 5.1,
+          "3-2x10": 6.3,
+          "3-2x12": 7.3,
+          "4-2x8": 6.4,
+          "4-2x10": 7.3,
+          "4-2x12": 8.4
+        }
+      }
+    }
+  }
+}
