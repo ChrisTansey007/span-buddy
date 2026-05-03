@@ -60,6 +60,17 @@ export function sizeFloorJoist(
       detail: [`Provided span: ${spanInches} inches`]
     };
   }
+
+  // Validate live load
+  const validLiveLoads = [30, 40];
+  if (!validLiveLoads.includes(liveLoad)) {
+    return {
+      ok: false,
+      reason: 'Live load must be 30 or 40 psf',
+      detail: [`Provided live load: ${liveLoad} psf`]
+    };
+  }
+
   const validSpacings = [12, 16, 19.2, 24];
   if (!validSpacings.includes(spacingInches)) {
     return {

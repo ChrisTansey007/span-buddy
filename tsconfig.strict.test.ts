@@ -1,6 +1,7 @@
-import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { describe, it, expect } from "vitest"
+// @vitest-environment node
+import { readFileSync } from "fs"
+import { join } from "path"
 
 /**
  * Guardrail test: tsconfig strictness cannot be quietly loosened.
