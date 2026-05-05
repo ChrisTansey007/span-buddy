@@ -2,13 +2,13 @@
   "project": "Span Buddy",
   "schema_version": "1.0.0",
   "current_wave": "wave-001",
-  "current_phase": "pm-owned-research-build-kickoff",
+  "current_phase": "pm-kickoff-produced-artifact",
   "last_reconciliation_time": "2026-05-05T21:29:50.389Z",
   "last_verified_commit": null,
-  "next_safe_action": "Product Manager should run SB-PM-001, record kickoff evidence, then launch Team 3 baseline and Team 4 research-map only with fresh process/worktree/ref evidence.",
+  "next_safe_action": "PM should launch SB-T3-001 baseline and SB-T4-001 source-map with fresh process/worktree/ref evidence; Team 1 and Team 2 remain planned until dependencies are met.",
   "lanes": {
     "product_manager": {
-      "status": "ready",
+      "status": "produced_artifact",
       "active_ticket": "SB-PM-001",
       "assigned_model": "free-router-model",
       "branch": "hermes/product/SB-PM-001-governance",
@@ -16,7 +16,9 @@
       "run_id": null,
       "evidence": [
         "ticket_exists",
-        "governance_docs"
+        "governance_docs",
+        "pm_kickoff_decision",
+        "commit_pending"
       ],
       "lock_id": null,
       "blocked_reason": null,

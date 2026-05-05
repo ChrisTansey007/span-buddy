@@ -22,13 +22,13 @@ tickets:
     title: Create and maintain durable ticket governance and backlog controls
     lane: product_manager
     owner: Product Manager
-    state: ready
+    state: produced_artifact
     priority: P0
     branch: hermes/product/SB-PM-001-governance
     worktree: .hermes/worktrees/SB-PM-001
-    evidence: [ticket_exists, governance_docs]
+    evidence: [ticket_exists, governance_docs, pm_kickoff_decision]
     verification_status: control_plane_verified
-    summary: Own research-build process, promotion gates, status evidence, and kickoff sequence.
+    summary: PM kickoff produced; own research-build process, promotion gates, status evidence, and kickoff sequence.
   SB-T1-001:
     title: Define engine result contracts and shared sizing types
     lane: team1_core_engine

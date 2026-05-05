@@ -48,4 +48,26 @@ Known current blockers before product feature work:
 
 ## Last Product Manager Summary
 
-PM kickoff pending. PM must update this section after first run with concrete evidence.
+Updated: 2026-05-05T21:47:23Z
+Profile evidence: `span-buddy-product-manager` returned `PM_KICKOFF_DECISION_CONFIRMED` in session `20260505_174642_2f8a9b`.
+
+### PM kickoff decision
+
+- PM owns the research → build process and promotion gates.
+- Team 3 Verification/Safety baseline is the next lane to launch.
+- Team 4 R&D IRC source-map research is the next lane to launch after/alongside baseline setup.
+- Team 1 Core/Engine remains planned until baseline/research dependencies are clear.
+- Team 2 Product/UI remains planned until the engine contract exists or PM explicitly scopes UI-only work.
+
+### Startup checks recorded on governance branch
+
+- `pnpm hermes:validate`: passed.
+- `pnpm hermes:test`: passed, 4/4 node test subtests.
+- line-start conflict-marker scan: no actual `<<<<<<<`, `=======`, or `>>>>>>>` marker lines remain in `docs` or `.hermes`.
+- `pnpm hermes:resume`: lane board shows PM, Team 3, and Team 4 ready; Team 1 planned; Team 2 planned/blocked on dependency.
+
+### Next PM-managed actions
+
+1. Launch `SB-T3-001` on `hermes/team3/SB-T3-001-verification` for baseline verification and remaining app-check failures.
+2. Launch `SB-T4-001` on `hermes/team4/SB-T4-001-rd-map` for IRC 2021 source map and candidate-ticket feed.
+3. Keep Team 1 and Team 2 out of active implementation until PM promotes bounded tickets with Team 3 verification criteria.
