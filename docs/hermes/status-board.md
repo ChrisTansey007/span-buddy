@@ -14,14 +14,14 @@
 | Product Manager | span-buddy-product-manager | every 3m | cron job scheduled |
 
 ## Active Tickets
-| Ticket | Team | Owner | Branch | Status | Evidence |
-|---|---|---|---|---|---|
-
+|| Ticket | Team | Owner | Branch | Status | Evidence |
+|---|---|---|---|---|---|---|
+|| SB-T2-001 | Team 2 — Product / UI | Team 2 Manager | hermes/team2/SB-T2-001-ui-flow | merged | [ticket_exists, merge_commit:27cfbad, pushed_ref:4211d4b] |
 ## Blockers
 See `problem-register.md`.
 
 ## Last Product Manager Summary
-_Not yet run._
+- 2026-05-05: Promoted SB-T2-001 to merged after verifying merge commit 27cfbad. Updated ticket backlog, status board, and integration log accordingly. No R&D findings to convert to candidate tickets at this time.
 
 ## Ticket Kickoff — 2026-05-01T05:06:51.563051+00:00
 - Initial ticket packets created: 17

@@ -9,7 +9,6 @@ The Product Manager owns this backlog. Team managers may propose tickets, but PM
 - SB-PM-001 — Ticket governance and backlog controls
 - SB-T3-001 — Baseline verification
 - SB-T1-001 — Engine result contracts
-- SB-T2-001 — Input workspace shell
 - SB-T4-001 — IRC table map research
 
 ## Next — Core MVP Wave
