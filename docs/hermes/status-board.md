@@ -93,3 +93,14 @@ Initial Team 3/Team 4 process attempts exited with NVIDIA HTTP 404 because their
 | Team 4 R&D | SB-T4-001 | span-buddy-team4-manager | hermes/team4/SB-T4-001-rd-map | .hermes/worktrees/SB-T4-001 | proc_a896c00032b3 / PID 24638 |
 
 These are active only while the listed processes are running. Completion still requires commits, pushed refs, and verification output.
+
+## PM Active Launch Evidence — 2026-05-05T21:58:40Z
+
+A second relaunch failed because Team 3/4 profiles did not have NVIDIA credentials in their isolated profile envs. To avoid copying secrets into additional profile files, the PM launch used the default Hermes runtime environment for these process launches only.
+
+| Lane | Ticket | Profile | Branch | Worktree | Process evidence |
+|---|---|---|---|---|---|
+| Team 3 Verification/Safety | SB-T3-001 | span-buddy-team3-manager | hermes/team3/SB-T3-001-verification | .hermes/worktrees/SB-T3-001 | proc_e34fc1f06d8b / PID 24931 |
+| Team 4 R&D | SB-T4-001 | span-buddy-team4-manager | hermes/team4/SB-T4-001-rd-map | .hermes/worktrees/SB-T4-001 | proc_1cce5877d576 / PID 25086 |
+
+Both processes were still running after initial 20-second waits. Completion still requires commits, pushed refs, and verification output.
