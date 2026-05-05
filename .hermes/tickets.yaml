@@ -43,11 +43,11 @@ tickets:
     title: Build first structured input workspace shell
     lane: team2_product_ui
     owner: Team 2 Manager
-    state: ready
+    state: merged
     priority: P1
     branch: hermes/team2/SB-T2-001-ui-flow
     worktree: .hermes/worktrees/SB-T2-001
-    evidence: [ticket_exists]
+    evidence: [ticket_exists, merge_commit:27cfbad]
     verification_status: not_started
     summary: Create safe UI form shell for project/span inputs without unsupported structural claims.
   SB-T3-001:
