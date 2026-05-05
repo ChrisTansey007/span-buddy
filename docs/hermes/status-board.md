@@ -71,3 +71,14 @@ Profile evidence: `span-buddy-product-manager` returned `PM_KICKOFF_DECISION_CON
 1. Launch `SB-T3-001` on `hermes/team3/SB-T3-001-verification` for baseline verification and remaining app-check failures.
 2. Launch `SB-T4-001` on `hermes/team4/SB-T4-001-rd-map` for IRC 2021 source map and candidate-ticket feed.
 3. Keep Team 1 and Team 2 out of active implementation until PM promotes bounded tickets with Team 3 verification criteria.
+
+## PM Launch Evidence — 2026-05-05T21:54:17Z
+
+Following the PM kickoff decision, the next lanes were launched with process evidence:
+
+| Lane | Ticket | Profile | Branch | Worktree | Process evidence |
+|---|---|---|---|---|---|
+| Team 3 Verification/Safety | SB-T3-001 | span-buddy-team3-manager | hermes/team3/SB-T3-001-verification | .hermes/worktrees/SB-T3-001 | proc_05a52f52f1d0 / PID 23992 |
+| Team 4 R&D | SB-T4-001 | span-buddy-team4-manager | hermes/team4/SB-T4-001-rd-map | .hermes/worktrees/SB-T4-001 | proc_5a22af7fa99a / PID 24148 |
+
+These are active only while the listed processes are running. Completion still requires commits, pushed refs, and verification output.

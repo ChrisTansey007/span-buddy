@@ -2,10 +2,10 @@
   "project": "Span Buddy",
   "schema_version": "1.0.0",
   "current_wave": "wave-001",
-  "current_phase": "pm-kickoff-produced-artifact",
+  "current_phase": "pm-launched-verification-and-research",
   "last_reconciliation_time": "2026-05-05T21:29:50.389Z",
   "last_verified_commit": null,
-  "next_safe_action": "PM should launch SB-T3-001 baseline and SB-T4-001 source-map with fresh process/worktree/ref evidence; Team 1 and Team 2 remain planned until dependencies are met.",
+  "next_safe_action": "Monitor Team 3 process proc_05a52f52f1d0/PID 23992 and Team 4 process proc_5a22af7fa99a/PID 24148; require commits, pushed refs, and verification output before completion claims.",
   "lanes": {
     "product_manager": {
       "status": "produced_artifact",
@@ -54,34 +54,38 @@
       "verification_status": "not_started"
     },
     "team3_verification_safety": {
-      "status": "ready",
+      "status": "running",
       "active_ticket": "SB-T3-001",
       "assigned_model": "free-router-model",
       "branch": "hermes/team3/SB-T3-001-verification",
       "worktree": ".hermes/worktrees/SB-T3-001",
-      "run_id": null,
+      "run_id": "proc_05a52f52f1d0",
       "evidence": [
         "ticket_exists",
-        "needed_for_baseline"
+        "worktree_exists",
+        "process_running",
+        "pid:23992"
       ],
-      "lock_id": null,
+      "lock_id": "SB-T3-001-2026-05-05T21:54:17Z",
       "blocked_reason": null,
-      "verification_status": "not_started"
+      "verification_status": "in_progress"
     },
     "team4_rd": {
-      "status": "ready",
+      "status": "running",
       "active_ticket": "SB-T4-001",
       "assigned_model": "free-router-model",
       "branch": "hermes/team4/SB-T4-001-rd-map",
       "worktree": ".hermes/worktrees/SB-T4-001",
-      "run_id": null,
+      "run_id": "proc_5a22af7fa99a",
       "evidence": [
         "ticket_exists",
-        "needed_for_research_intake"
+        "worktree_exists",
+        "process_running",
+        "pid:24148"
       ],
-      "lock_id": null,
+      "lock_id": "SB-T4-001-2026-05-05T21:54:17Z",
       "blocked_reason": null,
-      "verification_status": "not_started"
+      "verification_status": "in_progress"
     }
   }
 }
