@@ -1,30 +1,31 @@
 {
   "schema_version": "1.0.0",
-  "timestamp": "2026-05-02T03:39:37.256Z",
+  "timestamp": "2026-05-05T21:29:50.389Z",
   "reason": "resume",
   "git": {
-    "status_short": "## hermes/team2/SB-T2-001-ui-flow...origin/hermes/team2/SB-T2-001-ui-flow\n?? DEVELOPMENT_UPDATE.md\n?? FINAL_SUMMARY.md\n?? PHASE_1_SUMMARY.md\n?? PHASE_2_COMPLETE.md\n?? PHASE_2_SUMMARY.md\n?? PROGRESS_REPORT.md\n?? RESPONSE_TO_USER.md\n?? SUMMARY.md\n?? TASK_COMPLETED.md\n?? TEAM_UPDATE.md\n?? USER_REQUEST_RESPONSE.md\n?? app/calculator/\n?? basic.test.ts\n?? components/ui/WorkspaceInput.tsx\n?? data/irc-2021/R502.3.1(1).json\n?? data/irc-2021/R502.3.1(2).json\n?? data/irc-2021/R502.5(1).json\n?? data/irc-2021/README.md\n?? debug.js\n?? docs/rfcs/002-floor-joist-engine.md\n?? docs/rfcs/003-header-beam-engine.md\n?? docs/rfcs/003-header-girder-engine.md\n?? engine/basicTest.ts\n?? engine/debugTest.ts\n?? engine/debugTest2.ts\n?? engine/importTest.ts\n?? engine/pathTest.ts\n?? engine/simpleImportTest.ts\n?? engine/sizeFloorJoist.test.ts\n?? engine/sizeFloorJoist.ts\n?? engine/sizeFloorJoist40psf.test.ts\n?? engine/sizeFloorJoist40psf.ts\n?? engine/sizeHeader.test.ts\n?? engine/sizeHeader.ts\n?? isolatedTest.js\n?? pathTest.test.ts\n?? simpleTest.js\n?? simpleVerification.test.ts\n?? testDebug.js",
+    "status_short": "## hermes/pm-owned-research-build-kickoff\n M .hermes/current_state.json\n M .hermes/events.jsonl\n M .hermes/last_reconciliation.json\n M .hermes/resume-board.md\n M .hermes/tickets.yaml\nA  docs/hermes/action-plan-research-build.md\n M docs/hermes/operating-model.md\n M docs/hermes/product-manager-config.md\n M docs/hermes/proof-and-gates.md\n M docs/hermes/rd-research-log.md\n M docs/hermes/status-board.md\n M docs/hermes/ticket-generation-policy.md\n M docs/hermes/tickets/SB-PM-001.md\n M docs/hermes/tickets/SB-T1-001.md\n M docs/hermes/tickets/SB-T2-001.md\n M docs/hermes/tickets/SB-T3-001.md\n M docs/hermes/tickets/SB-T4-001.md\n?? docs/hermes/product-manager-runbook.md",
     "status_exit_code": 0,
-    "branches": "* hermes/team2/SB-T2-001-ui-flow\n  main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/hermes-control-plane-foundation\n  remotes/origin/hermes/team2/SB-T2-001-ui-flow\n  remotes/origin/main",
+    "branches": "  hermes/action-plan-research-build-20260505\n* hermes/pm-owned-research-build-kickoff\n  main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/feature/joist-span-v1\n  remotes/origin/hermes-control-plane-foundation\n  remotes/origin/hermes/action-plan-research-build-20260505\n  remotes/origin/hermes/team2/SB-T2-001-ui-flow\n  remotes/origin/main",
     "branches_exit_code": 0,
-    "worktrees": "worktree /home/theca/hermes-agent/span-buddy\nHEAD 33b2f746ecea6e57a4eb7564ae7c228dc5e07632\nbranch refs/heads/hermes/team2/SB-T2-001-ui-flow",
+    "worktrees": "worktree /home/theca/work/span-buddy\nHEAD 27cfbade4d60dba8c0dfc3de0b1317d1d02d9a92\nbranch refs/heads/hermes/pm-owned-research-build-kickoff",
     "worktrees_exit_code": 0
   },
   "lanes": [
     {
       "lane": "product_manager",
       "display_name": "Product Manager",
-      "status": "planned",
+      "status": "ready",
       "active_ticket": "SB-PM-001",
-      "ticket_state": "planned",
+      "ticket_state": "ready",
       "branch": "hermes/product/SB-PM-001-governance",
       "worktree": ".hermes/worktrees/SB-PM-001",
       "run_id": null,
       "evidence": [
-        "ticket_exists"
+        "ticket_exists",
+        "governance_docs"
       ],
-      "verification_status": "not_started",
-      "conservative_classification": "planned"
+      "verification_status": "control_plane_verified",
+      "conservative_classification": "ready"
     },
     {
       "lane": "team1_core_engine",
@@ -51,40 +52,43 @@
       "worktree": ".hermes/worktrees/SB-T2-001",
       "run_id": null,
       "evidence": [
-        "ticket_exists"
+        "ticket_exists",
+        "waits_for_engine_contract_or_pm_ui_scope"
       ],
       "verification_status": "not_started",
-      "conservative_classification": "planned"
+      "conservative_classification": "blocked"
     },
     {
       "lane": "team3_verification_safety",
       "display_name": "Team 3 — Verification / Safety",
-      "status": "planned",
+      "status": "ready",
       "active_ticket": "SB-T3-001",
-      "ticket_state": "planned",
+      "ticket_state": "ready",
       "branch": "hermes/team3/SB-T3-001-verification",
       "worktree": ".hermes/worktrees/SB-T3-001",
       "run_id": null,
       "evidence": [
-        "ticket_exists"
+        "ticket_exists",
+        "needed_for_baseline"
       ],
       "verification_status": "not_started",
-      "conservative_classification": "planned"
+      "conservative_classification": "ready"
     },
     {
       "lane": "team4_rd",
       "display_name": "Team 4 — R&D",
-      "status": "planned",
+      "status": "ready",
       "active_ticket": "SB-T4-001",
-      "ticket_state": "planned",
+      "ticket_state": "ready",
       "branch": "hermes/team4/SB-T4-001-rd-map",
       "worktree": ".hermes/worktrees/SB-T4-001",
       "run_id": null,
       "evidence": [
-        "ticket_exists"
+        "ticket_exists",
+        "needed_for_research_intake"
       ],
       "verification_status": "not_started",
-      "conservative_classification": "planned"
+      "conservative_classification": "ready"
     }
   ],
   "notes": [

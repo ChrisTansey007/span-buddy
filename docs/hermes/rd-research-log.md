@@ -1,14 +1,28 @@
-<<<<<<< HEAD
+
 # R&D Research Log
 
-*Log of research activities, findings, and prototypes*\n\n
-=======
-# R&D Research Log
+Owner: Team 4 R&D Manager
+Reviewed by: Product Manager
 
-Team 4 records research findings here. This file starts empty by design; it is a
-durable target for `SB-T4-001` and future R&D candidate-ticket generation.
+Team 4 records research findings here. Findings do not become build work until Product Manager promotes a candidate ticket.
+
+## Required entry format
+
+```text
+Date:
+Researcher/profile:
+Source title:
+Source URL or citation:
+IRC edition/jurisdiction:
+Relevant section/table:
+Licensing/access note:
+Extraction confidence:
+Finding:
+Risk/liability notes:
+Candidate Tickets:
+- SB-RD-CAND-### — promote/hold/reject recommendation
+```
 
 ## Candidate Tickets
 
-No R&D candidate tickets have been produced in committed state yet.
->>>>>>> origin/hermes-control-plane-foundation
+No R&D candidate tickets have been accepted in committed `main` state yet. `SB-T4-001` should create the first source map and candidate-ticket feed.

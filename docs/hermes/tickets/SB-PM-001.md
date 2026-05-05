@@ -1,68 +1,43 @@
-<<<<<<< HEAD
-# Ticket Packet: SB-PM-001 — Create and maintain ticket governance, backlog ordering, and evidence rules
 
-Status: Ready for assignment
-Created: 2026-05-01T05:06:51.563051+00:00
-Priority: P0
-
-## Product Story
-As product owner, I want a governed ticket backlog so all managers know what to run next and how to report evidence.
+# Ticket: SB-PM-001 — Create and maintain durable ticket governance and backlog controls
 
 ## Ownership
-- Team: Product Manager
-- Manager/Profile: span-buddy-product-manager
-- Developer Persona: Product manager
-- Area: PM
-- Branch: `hermes/pm/ticket-governance`
-- Worktree: `/tmp/span-buddy-worktrees/sb-pm-001`
+
+- Lane: `product_manager`
+- Owner: Product Manager
+- Branch: `hermes/product/SB-PM-001-governance`
+- Worktree: `.hermes/worktrees/SB-PM-001`
+
+## Summary
+
+Own the research-build process, promotion gates, status board, and kickoff sequence.
 
 ## Scope
-Allowed files/directories:
-- `docs/hermes/**`
 
-Disallowed files/directories:
-- `components/ui/DisclaimerBanner.tsx` unless RFC-approved and disclaimer meaning is preserved
-- `tsconfig.json` strictness flags unless explicitly preserving or tightening them
-- Raw credentials, tokens, or key material anywhere
-- Production structural span data unless manually verified and cited
-
-## Context
-- Relevant docs/code paths: `PROJECT_PLAN.md`, `README.md`, `docs/hermes/operating-model.md`, `docs/hermes/proof-and-gates.md`
-- Prior decisions: OpenRouter free model only; PE-review disclaimer cannot be weakened; all engineering outputs must be traceable.
+Allowed files/directories depend on the active ticket packet and must be kept bounded. Do not edit secrets or credential files.
 
 ## Acceptance Criteria
-- [ ] Ticket queue exists with Now/Next/Later status
-- [ ] Every ticket has owner, branch, acceptance criteria, required evidence
-- [ ] PM cadence includes adding tickets from R&D findings
-- [ ] No code behavior changes
+
+- [ ] Work is scoped to the ticket and branch above.
+- [ ] Required artifacts are updated.
+- [ ] Guardrails from `docs/hermes/proof-and-gates.md` are preserved.
+- [ ] Verification output is recorded.
+- [ ] Commit/ref evidence exists before completion is claimed.
 
 ## Required Commands
-- [ ] `pnpm lint`
-- [ ] `pnpm typecheck`
-- [ ] `pnpm test -- --run` or `pnpm test` as applicable
-- [ ] `pnpm test:e2e` when UI/user flow affected
-- [ ] `pnpm build`
 
-## Required Evidence
-- Developer result JSON in `docs/hermes/agent-results/`
-- Manager review JSON in `docs/hermes/manager-reviews/`
-- Team 3 verification JSON in `docs/hermes/verification/` if code or release behavior changed
-- Commit hash and remote ref if files changed
-- Updated `docs/hermes/integration-log.md`, `status-board.md`, and relevant team plan
+```bash
+pnpm hermes:validate
+pnpm hermes:test
+```
 
-## Kickoff Prompt
-Read this ticket packet, your persona file, your manager config, `docs/hermes/proof-and-gates.md`, and `docs/hermes/github-auth-runbook.md`. Work only in the assigned branch/worktree. Preserve safety disclaimers. Do not invent structural values. Produce signed evidence before claiming completion.
-=======
-# Ticket SB-PM-001 — Create and maintain durable ticket governance and backlog controls
+For code or user-visible behavior changes, also run:
 
-Status: planned
+```bash
+pnpm lint
+pnpm typecheck
+pnpm test -- --run
+pnpm build
+```
 
-The machine-readable source of truth for this ticket is `.hermes/tickets.yaml`.
-This document exists for human review and manager prompting.
-
-## Evidence boundary
-
-This ticket is seeded as planned with `ticket_exists` evidence only. It is not
-assigned, launched, running, reviewed, verified, pushed, or merged until the
-control plane records matching evidence.
->>>>>>> origin/hermes-control-plane-foundation
+Run `pnpm test:e2e` when UI/user flows changed.

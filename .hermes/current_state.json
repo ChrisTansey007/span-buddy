@@ -2,31 +2,32 @@
   "project": "Span Buddy",
   "schema_version": "1.0.0",
   "current_wave": "wave-001",
-  "current_phase": "durable-control-plane-foundation",
-  "last_reconciliation_time": "2026-05-02T03:39:37.256Z",
+  "current_phase": "pm-owned-research-build-kickoff",
+  "last_reconciliation_time": "2026-05-05T21:29:50.389Z",
   "last_verified_commit": null,
-  "next_safe_action": "Review resume board, then explicitly launch only eligible lanes with fresh locks and run evidence.",
+  "next_safe_action": "Product Manager should run SB-PM-001, record kickoff evidence, then launch Team 3 baseline and Team 4 research-map only with fresh process/worktree/ref evidence.",
   "lanes": {
     "product_manager": {
-      "status": "planned",
+      "status": "ready",
       "active_ticket": "SB-PM-001",
       "assigned_model": "free-router-model",
-      "branch": null,
-      "worktree": null,
+      "branch": "hermes/product/SB-PM-001-governance",
+      "worktree": ".hermes/worktrees/SB-PM-001",
       "run_id": null,
       "evidence": [
-        "ticket_exists"
+        "ticket_exists",
+        "governance_docs"
       ],
       "lock_id": null,
       "blocked_reason": null,
-      "verification_status": "not_started"
+      "verification_status": "control_plane_verified"
     },
     "team1_core_engine": {
       "status": "planned",
       "active_ticket": "SB-T1-001",
       "assigned_model": "free-router-model",
-      "branch": null,
-      "worktree": null,
+      "branch": "hermes/team1/SB-T1-001-engine-contracts",
+      "worktree": ".hermes/worktrees/SB-T1-001",
       "run_id": null,
       "evidence": [
         "ticket_exists"
@@ -36,42 +37,45 @@
       "verification_status": "not_started"
     },
     "team2_product_ui": {
-      "status": "ready",
+      "status": "planned",
       "active_ticket": "SB-T2-001",
       "assigned_model": "free-router-model",
-      "branch": null,
-      "worktree": null,
+      "branch": "hermes/team2/SB-T2-001-ui-flow",
+      "worktree": ".hermes/worktrees/SB-T2-001",
       "run_id": null,
       "evidence": [
-        "ticket_exists"
+        "ticket_exists",
+        "waits_for_engine_contract_or_pm_ui_scope"
       ],
       "lock_id": null,
-      "blocked_reason": null,
+      "blocked_reason": "Waiting for PM promotion after Team 1 engine contract or explicit UI-only scope.",
       "verification_status": "not_started"
     },
     "team3_verification_safety": {
-      "status": "planned",
+      "status": "ready",
       "active_ticket": "SB-T3-001",
       "assigned_model": "free-router-model",
-      "branch": null,
-      "worktree": null,
+      "branch": "hermes/team3/SB-T3-001-verification",
+      "worktree": ".hermes/worktrees/SB-T3-001",
       "run_id": null,
       "evidence": [
-        "ticket_exists"
+        "ticket_exists",
+        "needed_for_baseline"
       ],
       "lock_id": null,
       "blocked_reason": null,
       "verification_status": "not_started"
     },
     "team4_rd": {
-      "status": "planned",
+      "status": "ready",
       "active_ticket": "SB-T4-001",
       "assigned_model": "free-router-model",
-      "branch": null,
-      "worktree": null,
+      "branch": "hermes/team4/SB-T4-001-rd-map",
+      "worktree": ".hermes/worktrees/SB-T4-001",
       "run_id": null,
       "evidence": [
-        "ticket_exists"
+        "ticket_exists",
+        "needed_for_research_intake"
       ],
       "lock_id": null,
       "blocked_reason": null,

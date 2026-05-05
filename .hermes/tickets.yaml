@@ -1,3 +1,4 @@
+
 schema_version: 1.0.0
 project: Span Buddy
 allowed_ticket_states:
@@ -21,13 +22,13 @@ tickets:
     title: Create and maintain durable ticket governance and backlog controls
     lane: product_manager
     owner: Product Manager
-    state: planned
+    state: ready
     priority: P0
     branch: hermes/product/SB-PM-001-governance
     worktree: .hermes/worktrees/SB-PM-001
-    evidence: [ticket_exists]
-    verification_status: not_started
-    summary: Establish backlog governance, proof rules, promotion process, and final scope control.
+    evidence: [ticket_exists, governance_docs]
+    verification_status: control_plane_verified
+    summary: Own research-build process, promotion gates, status evidence, and kickoff sequence.
   SB-T1-001:
     title: Define engine result contracts and shared sizing types
     lane: team1_core_engine
@@ -43,32 +44,32 @@ tickets:
     title: Build first structured input workspace shell
     lane: team2_product_ui
     owner: Team 2 Manager
-    state: ready
+    state: planned
     priority: P1
     branch: hermes/team2/SB-T2-001-ui-flow
     worktree: .hermes/worktrees/SB-T2-001
-    evidence: [ticket_exists]
+    evidence: [ticket_exists, waits_for_engine_contract_or_pm_ui_scope]
     verification_status: not_started
     summary: Create safe UI form shell for project/span inputs without unsupported structural claims.
   SB-T3-001:
     title: Run and document baseline verification status
     lane: team3_verification_safety
     owner: Team 3 Manager
-    state: planned
+    state: ready
     priority: P0
     branch: hermes/team3/SB-T3-001-verification
     worktree: .hermes/worktrees/SB-T3-001
-    evidence: [ticket_exists]
+    evidence: [ticket_exists, needed_for_baseline]
     verification_status: not_started
     summary: Establish current lint, typecheck, unit, e2e, build, security, and liability-language baseline.
   SB-T4-001:
     title: Research and map IRC 2021 table and section priorities for Phase 1
     lane: team4_rd
     owner: Team 4 R&D Manager
-    state: planned
+    state: ready
     priority: P1
     branch: hermes/team4/SB-T4-001-rd-map
     worktree: .hermes/worktrees/SB-T4-001
-    evidence: [ticket_exists]
+    evidence: [ticket_exists, needed_for_research_intake]
     verification_status: not_started
     summary: Produce a prioritized source/table map and candidate-ticket feed for Phase 1.
