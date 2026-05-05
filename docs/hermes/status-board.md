@@ -82,3 +82,14 @@ Following the PM kickoff decision, the next lanes were launched with process evi
 | Team 4 R&D | SB-T4-001 | span-buddy-team4-manager | hermes/team4/SB-T4-001-rd-map | .hermes/worktrees/SB-T4-001 | proc_5a22af7fa99a / PID 24148 |
 
 These are active only while the listed processes are running. Completion still requires commits, pushed refs, and verification output.
+
+## PM Relaunch Evidence — 2026-05-05T21:56:57Z
+
+Initial Team 3/Team 4 process attempts exited with NVIDIA HTTP 404 because their profiles used the OpenRouter-style `:free` model suffix under provider `nvidia`. The profiles were corrected to `nvidia/nemotron-3-super-120b-a12b` and relaunched.
+
+| Lane | Ticket | Profile | Branch | Worktree | Process evidence |
+|---|---|---|---|---|---|
+| Team 3 Verification/Safety | SB-T3-001 | span-buddy-team3-manager | hermes/team3/SB-T3-001-verification | .hermes/worktrees/SB-T3-001 | proc_b10511fc1bbd / PID 24483 |
+| Team 4 R&D | SB-T4-001 | span-buddy-team4-manager | hermes/team4/SB-T4-001-rd-map | .hermes/worktrees/SB-T4-001 | proc_a896c00032b3 / PID 24638 |
+
+These are active only while the listed processes are running. Completion still requires commits, pushed refs, and verification output.
