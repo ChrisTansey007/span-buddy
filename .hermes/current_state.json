@@ -2,10 +2,10 @@
   "project": "Span Buddy",
   "schema_version": "1.0.0",
   "current_wave": "wave-001",
-  "current_phase": "pm-launched-verification-and-research",
+  "current_phase": "profile-nvidia-direct-config-fixed",
   "last_reconciliation_time": "2026-05-05T21:29:50.389Z",
   "last_verified_commit": null,
-  "next_safe_action": "Monitor active Team 3 process proc_e34fc1f06d8b/PID 24931 and Team 4 process proc_1cce5877d576/PID 25086; require commits, pushed refs, and verification output before completion claims.",
+  "next_safe_action": "Relaunch Team 3 and Team 4 from profile-local NVIDIA config only; no OpenRouter fallback/suffix and no runtime sourcing workaround.",
   "lanes": {
     "product_manager": {
       "status": "produced_artifact",
@@ -54,40 +54,36 @@
       "verification_status": "not_started"
     },
     "team3_verification_safety": {
-      "status": "running",
+      "status": "ready_for_relaunch",
       "active_ticket": "SB-T3-001",
       "assigned_model": "free-router-model",
       "branch": "hermes/team3/SB-T3-001-verification",
       "worktree": ".hermes/worktrees/SB-T3-001",
-      "run_id": "proc_e34fc1f06d8b",
+      "run_id": null,
       "evidence": [
         "ticket_exists",
         "worktree_exists",
-        "process_running",
-        "pid:24931",
-        "launched_with_runtime_nvidia_env"
+        "profile_nvidia_direct_verified"
       ],
       "lock_id": "SB-T3-001-2026-05-05T21:58:40Z",
-      "blocked_reason": null,
-      "verification_status": "in_progress"
+      "blocked_reason": "previous launch did not produce pushed team artifact; profile config now fixed",
+      "verification_status": "profile_config_verified"
     },
     "team4_rd": {
-      "status": "running",
+      "status": "ready_for_relaunch",
       "active_ticket": "SB-T4-001",
       "assigned_model": "free-router-model",
       "branch": "hermes/team4/SB-T4-001-rd-map",
       "worktree": ".hermes/worktrees/SB-T4-001",
-      "run_id": "proc_1cce5877d576",
+      "run_id": null,
       "evidence": [
         "ticket_exists",
         "worktree_exists",
-        "process_running",
-        "pid:25086",
-        "launched_with_runtime_nvidia_env"
+        "profile_nvidia_direct_verified"
       ],
       "lock_id": "SB-T4-001-2026-05-05T21:58:40Z",
-      "blocked_reason": null,
-      "verification_status": "in_progress"
+      "blocked_reason": "previous launch did not produce pushed team artifact; profile config now fixed",
+      "verification_status": "profile_config_verified"
     }
   }
 }

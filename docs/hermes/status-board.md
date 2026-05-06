@@ -104,3 +104,19 @@ A second relaunch failed because Team 3/4 profiles did not have NVIDIA credentia
 | Team 4 R&D | SB-T4-001 | span-buddy-team4-manager | hermes/team4/SB-T4-001-rd-map | .hermes/worktrees/SB-T4-001 | proc_1cce5877d576 / PID 25086 |
 
 Both processes were still running after initial 20-second waits. Completion still requires commits, pushed refs, and verification output.
+
+## Profile NVIDIA Direct Config Fix — 2026-05-06T02:20:13Z
+
+The Span Buddy profiles are now configured to use direct NVIDIA, not OpenRouter:
+
+| Profile | Provider | Model | Fallback providers | NVIDIA key in profile env | Verification |
+|---|---|---|---|---|---|
+| span-buddy-product-manager | nvidia | nvidia/nemotron-3-super-120b-a12b | [] | present | `NVIDIA_DIRECT_OK_span-buddy-product-manager` |
+| span-buddy-team1-manager | nvidia | nvidia/nemotron-3-super-120b-a12b | [] | present | `NVIDIA_DIRECT_OK_span-buddy-team1-manager` |
+| span-buddy-team2-manager | nvidia | nvidia/nemotron-3-super-120b-a12b | [] | present | `NVIDIA_DIRECT_OK_span-buddy-team2-manager` |
+| span-buddy-team3-manager | nvidia | nvidia/nemotron-3-super-120b-a12b | [] | present | `NVIDIA_DIRECT_OK_span-buddy-team3-manager` |
+| span-buddy-team4-manager | nvidia | nvidia/nemotron-3-super-120b-a12b | [] | present | `NVIDIA_DIRECT_OK_span-buddy-team4-manager` |
+
+The `:free` suffix and OpenRouter fallback providers were removed from these profile configs. `terminal.cwd` was set to each profile's intended Span Buddy worktree to prevent the previous wrong-path/read-only-worktree failure mode.
+
+Previous Team 3/Team 4 launches are not counted as completed work: Team 3 produced no branch commit; Team 4 reported a filesystem/path blocker and produced no branch commit. Team branches remain at `edc18f763acc59aa0f386ce21a9df831901ed3ba` until relaunched work produces pushed artifacts.
