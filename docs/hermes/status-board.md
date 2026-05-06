@@ -120,3 +120,14 @@ The Span Buddy profiles are now configured to use direct NVIDIA, not OpenRouter:
 The `:free` suffix and OpenRouter fallback providers were removed from these profile configs. `terminal.cwd` was set to each profile's intended Span Buddy worktree to prevent the previous wrong-path/read-only-worktree failure mode.
 
 Previous Team 3/Team 4 launches are not counted as completed work: Team 3 produced no branch commit; Team 4 reported a filesystem/path blocker and produced no branch commit. Team branches remain at `edc18f763acc59aa0f386ce21a9df831901ed3ba` until relaunched work produces pushed artifacts.
+
+## Direct-NVIDIA Relaunch Evidence — 2026-05-06T02:37:43Z
+
+After fixing profile-local NVIDIA credentials/configs and `terminal.cwd`, Team 3 and Team 4 were relaunched without sourcing the default environment and without OpenRouter fallback.
+
+| Lane | Ticket | Profile | Branch | Worktree | Process evidence |
+|---|---|---|---|---|---|
+| Team 3 Verification/Safety | SB-T3-001 | span-buddy-team3-manager | hermes/team3/SB-T3-001-verification | .hermes/worktrees/SB-T3-001 | proc_ad352a7110eb / PID 44778 |
+| Team 4 R&D | SB-T4-001 | span-buddy-team4-manager | hermes/team4/SB-T4-001-rd-map | .hermes/worktrees/SB-T4-001 | proc_ae898c053300 / PID 44937 |
+
+Initial 20-second waits timed out with both processes still running, which is expected for real work. Completion still requires team branch commits, pushed refs, and verification output.
