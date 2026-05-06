@@ -2,10 +2,10 @@
   "project": "Span Buddy",
   "schema_version": "1.0.0",
   "current_wave": "wave-001",
-  "current_phase": "teams-relaunched-direct-nvidia",
+  "current_phase": "team3-team4-launches-exited-needing-recovery",
   "last_reconciliation_time": "2026-05-05T21:29:50.389Z",
   "last_verified_commit": null,
-  "next_safe_action": "Monitor direct-NVIDIA Team 3 process proc_ad352a7110eb/PID 44778 and Team 4 process proc_ae898c053300/PID 44937; require pushed commits and verification before completion claims.",
+  "next_safe_action": "PM should recover Team 3/Team 4 using clean worktrees and direct-NVIDIA profiles; require actual branch-local commits, pushed refs, and verification output. Also reconcile/disable stale old OpenRouter cron jobs before further autonomous cycles.",
   "lanes": {
     "product_manager": {
       "status": "produced_artifact",
@@ -54,40 +54,39 @@
       "verification_status": "not_started"
     },
     "team3_verification_safety": {
-      "status": "running",
+      "status": "blocked_needs_recovery",
       "active_ticket": "SB-T3-001",
       "assigned_model": "free-router-model",
       "branch": "hermes/team3/SB-T3-001-verification",
       "worktree": ".hermes/worktrees/SB-T3-001",
       "run_id": "proc_ad352a7110eb",
       "evidence": [
-        "ticket_exists",
-        "worktree_exists",
-        "process_running",
-        "pid:44778",
-        "profile_local_nvidia_direct"
+        "process_exited_pid_44778",
+        "no_pushed_team_ref_beyond_6af8948",
+        "no_branch_local_commit_found",
+        "agent_reported_push_auth_failure",
+        "verification_partial_with_unit_build_failures"
       ],
       "lock_id": "SB-T3-001-2026-05-06T02:37:43Z",
-      "blocked_reason": null,
-      "verification_status": "in_progress"
+      "blocked_reason": "Team 3 process exited; no pushed artifact on hermes/team3/SB-T3-001-verification. Agent reported push auth failure and verification failures. Local commit 553d120 reported by agent was not found in repository refs.",
+      "verification_status": "failed_partial_artifact"
     },
     "team4_rd": {
-      "status": "running",
+      "status": "blocked_needs_recovery",
       "active_ticket": "SB-T4-001",
       "assigned_model": "free-router-model",
       "branch": "hermes/team4/SB-T4-001-rd-map",
       "worktree": ".hermes/worktrees/SB-T4-001",
       "run_id": "proc_ae898c053300",
       "evidence": [
-        "ticket_exists",
-        "worktree_exists",
-        "process_running",
-        "pid:44937",
-        "profile_local_nvidia_direct"
+        "process_exited_pid_44937",
+        "no_pushed_team_ref_beyond_6af8948",
+        "no_branch_local_artifact_found",
+        "agent_reported_wrong_or_minimal_repo_context"
       ],
       "lock_id": "SB-T4-001-2026-05-06T02:37:43Z",
-      "blocked_reason": null,
-      "verification_status": "in_progress"
+      "blocked_reason": "Team 4 process exited; no pushed artifact on hermes/team4/SB-T4-001-rd-map. Agent reported files/branch that are not present in tracked worktree refs, so completion is not accepted.",
+      "verification_status": "failed_no_artifact"
     }
   }
 }

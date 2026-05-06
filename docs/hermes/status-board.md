@@ -131,3 +131,16 @@ After fixing profile-local NVIDIA credentials/configs and `terminal.cwd`, Team 3
 | Team 4 R&D | SB-T4-001 | span-buddy-team4-manager | hermes/team4/SB-T4-001-rd-map | .hermes/worktrees/SB-T4-001 | proc_ae898c053300 / PID 44937 |
 
 Initial 20-second waits timed out with both processes still running, which is expected for real work. Completion still requires team branch commits, pushed refs, and verification output.
+
+## Process Health Check — 2026-05-06T04:15:09Z
+
+Evidence check after direct-NVIDIA relaunch:
+
+| Lane | Prior process | Result | Accepted completion? | Evidence |
+|---|---|---|---|---|
+| Team 3 Verification/Safety | proc_ad352a7110eb / PID 44778 | exited | No | remote ref still `6af8948e94d814e49d321c15c67a142626031db0`; no branch-local artifact commit found; process reported push auth failure and partial verification failures |
+| Team 4 R&D | proc_ae898c053300 / PID 44937 | exited | No | remote ref still `6af8948e94d814e49d321c15c67a142626031db0`; no expected source-map artifacts present on tracked team branch; process reported wrong/minimal repo context |
+
+PM branch remains the only successfully pushed/verified governance artifact at this check. Do not claim Team 3 or Team 4 completion until a clean relaunch produces branch-local commits, pushed refs, and verification output.
+
+Additional reliability issue: older Span Buddy cron jobs still exist with OpenRouter `:free` model settings and stale workdirs. They should be reconciled, updated to direct NVIDIA, or paused before trusting autonomous loops.
