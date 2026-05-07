@@ -55,21 +55,21 @@ tickets:
     title: Run and document baseline verification status
     lane: team3_verification_safety
     owner: Team 3 Manager
-    state: ready
+    state: blocked
     priority: P0
     branch: hermes/team3/SB-T3-001-verification
     worktree: .hermes/worktrees/SB-T3-001
-    evidence: [ticket_exists, needed_for_baseline]
-    verification_status: not_started
-    summary: Establish current lint, typecheck, unit, e2e, build, security, and liability-language baseline.
+    evidence: [ticket_exists, needed_for_baseline, process_not_running_pid_44778, no_new_branch_local_commit_2026-05-07, remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0]
+    verification_status: failed_no_accepted_artifact
+    summary: Direct-NVIDIA process exited without accepted artifact; no local/pushed branch commit beyond 6af8948; prior reported commit 553d120 was not found and push/verification failed.
   SB-T4-001:
     title: Research and map IRC 2021 table and section priorities for Phase 1
     lane: team4_rd
     owner: Team 4 R&D Manager
-    state: ready
+    state: blocked
     priority: P1
     branch: hermes/team4/SB-T4-001-rd-map
     worktree: .hermes/worktrees/SB-T4-001
-    evidence: [ticket_exists, needed_for_research_intake]
-    verification_status: not_started
-    summary: Produce a prioritized source/table map and candidate-ticket feed for Phase 1.
+    evidence: [ticket_exists, needed_for_research_intake, process_not_running_pid_44937, no_new_branch_local_commit_2026-05-07, remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0]
+    verification_status: failed_no_accepted_artifact
+    summary: Direct-NVIDIA process exited without accepted artifact; no local/pushed branch commit beyond 6af8948; prior summary reported wrong/minimal repo context and no tracked source-map artifacts.

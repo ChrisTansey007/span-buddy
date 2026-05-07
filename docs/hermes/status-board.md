@@ -32,8 +32,8 @@
 | Ticket | Team | Owner | Branch | Status | Evidence |
 |---|---|---|---|---|---|
 | SB-PM-001 | Product Manager | Product Manager | hermes/product/SB-PM-001-governance | ready | ticket_exists, governance_docs |
-| SB-T3-001 | Team 3 | Team 3 Manager | hermes/team3/SB-T3-001-verification | ready | ticket_exists, needed_for_baseline |
-| SB-T4-001 | Team 4 | Team 4 R&D Manager | hermes/team4/SB-T4-001-rd-map | ready | ticket_exists, needed_for_research_intake |
+| SB-T3-001 | Team 3 | Team 3 Manager | hermes/team3/SB-T3-001-verification | blocked | process_not_running_pid_44778, no_new_branch_local_commit, remote_ref_6af8948 |
+| SB-T4-001 | Team 4 | Team 4 R&D Manager | hermes/team4/SB-T4-001-rd-map | blocked | process_not_running_pid_44937, no_new_branch_local_commit, remote_ref_6af8948 |
 | SB-T1-001 | Team 1 | Team 1 Manager | hermes/team1/SB-T1-001-engine-contracts | planned | waits_for_pm_sequence |
 | SB-T2-001 | Team 2 | Team 2 Manager | hermes/team2/SB-T2-001-ui-flow | planned | waits_for_engine_contract_or_pm_ui_scope |
 
@@ -144,3 +144,14 @@ Evidence check after direct-NVIDIA relaunch:
 PM branch remains the only successfully pushed/verified governance artifact at this check. Do not claim Team 3 or Team 4 completion until a clean relaunch produces branch-local commits, pushed refs, and verification output.
 
 Additional reliability issue: older Span Buddy cron jobs still exist with OpenRouter `:free` model settings and stale workdirs. They should be reconciled, updated to direct NVIDIA, or paused before trusting autonomous loops.
+
+## PM Monitor Recheck — 2026-05-07T02:32:43Z
+
+Direct-NVIDIA Team 3/4 process and ref evidence was rechecked from the PM governance worktree.
+
+| Lane | Process evidence | Process state | Branch/worktree/ref evidence | Accepted completion? | Blocker |
+|---|---|---|---|---|---|
+| Team 3 Verification/Safety | `proc_ad352a7110eb` / PID `44778` | not running (`ps -p 44778` returned no process) | worktree `.hermes/worktrees/SB-T3-001` on `hermes/team3/SB-T3-001-verification`; local HEAD and remote ref both `6af8948e94d814e49d321c15c67a142626031db0`; no branch-local artifact commit | No | Prior Team 3 final reported commit `553d120`, but that commit is not present in repository refs; push failed because git could not read HTTPS credentials; unit/build verification was not green. |
+| Team 4 R&D | `proc_ae898c053300` / PID `44937` | not running (`ps -p 44937` returned no process) | worktree `.hermes/worktrees/SB-T4-001` on `hermes/team4/SB-T4-001-rd-map`; local HEAD and remote ref both `6af8948e94d814e49d321c15c67a142626031db0`; no branch-local artifact commit | No | Prior Team 4 summary reported wrong/minimal repo context and no accepted tracked source-map artifacts. |
+
+Profile config evidence for Team 3 and Team 4: `model.provider` is `nvidia`, `model.model` is `nvidia/nemotron-3-super-120b-a12b`, `fallback_providers` is empty, and no `:free` suffix/OpenRouter fallback is configured. Completion remains blocked until clean relaunch work produces actual commits, pushed refs, and verification output.
