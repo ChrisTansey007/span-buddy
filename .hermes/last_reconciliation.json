@@ -1,31 +1,34 @@
 {
   "schema_version": "1.0.0",
-  "timestamp": "2026-05-05T21:29:50.389Z",
+  "timestamp": "2026-05-07T02:37:01.595Z",
   "reason": "resume",
   "git": {
-    "status_short": "## hermes/pm-owned-research-build-kickoff\n M .hermes/current_state.json\n M .hermes/events.jsonl\n M .hermes/last_reconciliation.json\n M .hermes/resume-board.md\n M .hermes/tickets.yaml\nA  docs/hermes/action-plan-research-build.md\n M docs/hermes/operating-model.md\n M docs/hermes/product-manager-config.md\n M docs/hermes/proof-and-gates.md\n M docs/hermes/rd-research-log.md\n M docs/hermes/status-board.md\n M docs/hermes/ticket-generation-policy.md\n M docs/hermes/tickets/SB-PM-001.md\n M docs/hermes/tickets/SB-T1-001.md\n M docs/hermes/tickets/SB-T2-001.md\n M docs/hermes/tickets/SB-T3-001.md\n M docs/hermes/tickets/SB-T4-001.md\n?? docs/hermes/product-manager-runbook.md",
+    "status_short": "## hermes/product/SB-PM-001-governance",
     "status_exit_code": 0,
-    "branches": "  hermes/action-plan-research-build-20260505\n* hermes/pm-owned-research-build-kickoff\n  main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/feature/joist-span-v1\n  remotes/origin/hermes-control-plane-foundation\n  remotes/origin/hermes/action-plan-research-build-20260505\n  remotes/origin/hermes/team2/SB-T2-001-ui-flow\n  remotes/origin/main",
+    "branches": "  feature/joist-span-v1\n  hermes/action-plan-research-build-20260505\n+ hermes/hermes-5f3a9d8b\n+ hermes/hermes-f1be637e\n+ hermes/pm-owned-research-build-kickoff\n* hermes/product/SB-PM-001-governance\n+ hermes/team3/SB-T3-001-verification\n+ hermes/team4/SB-T4-001-rd-map\n  main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/feature/joist-span-v1\n  remotes/origin/hermes-control-plane-foundation\n  remotes/origin/hermes/action-plan-research-build-20260505\n  remotes/origin/hermes/pm-owned-research-build-kickoff\n  remotes/origin/hermes/product/SB-PM-001-governance\n  remotes/origin/hermes/team2/SB-T2-001-ui-flow\n  remotes/origin/hermes/team3/SB-T3-001-verification\n  remotes/origin/hermes/team4/SB-T4-001-rd-map\n  remotes/origin/main",
     "branches_exit_code": 0,
-    "worktrees": "worktree /home/theca/work/span-buddy\nHEAD 27cfbade4d60dba8c0dfc3de0b1317d1d02d9a92\nbranch refs/heads/hermes/pm-owned-research-build-kickoff",
+    "worktrees": "worktree /home/theca/work/span-buddy\nHEAD 181c9aec923856f0e7c727ace280cb500b2355cc\nbranch refs/heads/hermes/pm-owned-research-build-kickoff\n\nworktree /home/theca/work/span-buddy/.hermes/worktrees/SB-PM-001\nHEAD efd2d4aad08075d2770fd09760dd6482e34d8bd0\nbranch refs/heads/hermes/product/SB-PM-001-governance\n\nworktree /home/theca/work/span-buddy/.hermes/worktrees/SB-PM-001/.worktrees/hermes-5f3a9d8b\nHEAD 181c9aec923856f0e7c727ace280cb500b2355cc\nbranch refs/heads/hermes/hermes-5f3a9d8b\n\nworktree /home/theca/work/span-buddy/.hermes/worktrees/SB-PM-001/.worktrees/hermes-f1be637e\nHEAD 7c8030adb43a925f3ea8acb800daa8fe0902d8b4\nbranch refs/heads/hermes/hermes-f1be637e\n\nworktree /home/theca/work/span-buddy/.hermes/worktrees/SB-T3-001\nHEAD 6af8948e94d814e49d321c15c67a142626031db0\nbranch refs/heads/hermes/team3/SB-T3-001-verification\n\nworktree /home/theca/work/span-buddy/.hermes/worktrees/SB-T4-001\nHEAD 6af8948e94d814e49d321c15c67a142626031db0\nbranch refs/heads/hermes/team4/SB-T4-001-rd-map",
     "worktrees_exit_code": 0
   },
   "lanes": [
     {
       "lane": "product_manager",
       "display_name": "Product Manager",
-      "status": "ready",
+      "status": "produced_artifact",
       "active_ticket": "SB-PM-001",
-      "ticket_state": "ready",
+      "ticket_state": "produced_artifact",
       "branch": "hermes/product/SB-PM-001-governance",
       "worktree": ".hermes/worktrees/SB-PM-001",
       "run_id": null,
       "evidence": [
         "ticket_exists",
-        "governance_docs"
+        "governance_docs",
+        "pm_kickoff_decision",
+        "pm_monitor_recheck_2026-05-07",
+        "governance_status_update"
       ],
       "verification_status": "control_plane_verified",
-      "conservative_classification": "ready"
+      "conservative_classification": "produced_artifact"
     },
     {
       "lane": "team1_core_engine",
@@ -61,34 +64,47 @@
     {
       "lane": "team3_verification_safety",
       "display_name": "Team 3 — Verification / Safety",
-      "status": "ready",
+      "status": "blocked_needs_recovery",
       "active_ticket": "SB-T3-001",
-      "ticket_state": "ready",
+      "ticket_state": "blocked",
       "branch": "hermes/team3/SB-T3-001-verification",
       "worktree": ".hermes/worktrees/SB-T3-001",
-      "run_id": null,
+      "run_id": "proc_ad352a7110eb",
       "evidence": [
-        "ticket_exists",
-        "needed_for_baseline"
+        "process_exited_pid_44778",
+        "no_pushed_team_ref_beyond_6af8948",
+        "no_branch_local_commit_found",
+        "agent_reported_push_auth_failure",
+        "verification_partial_with_unit_build_failures",
+        "no_new_branch_local_commit_2026-05-07",
+        "process_not_running_pid_44778",
+        "profile_config_nvidia_direct_no_openrouter_fallback",
+        "remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0"
       ],
-      "verification_status": "not_started",
-      "conservative_classification": "ready"
+      "verification_status": "failed_no_accepted_artifact",
+      "conservative_classification": "blocked"
     },
     {
       "lane": "team4_rd",
       "display_name": "Team 4 — R&D",
-      "status": "ready",
+      "status": "blocked_needs_recovery",
       "active_ticket": "SB-T4-001",
-      "ticket_state": "ready",
+      "ticket_state": "blocked",
       "branch": "hermes/team4/SB-T4-001-rd-map",
       "worktree": ".hermes/worktrees/SB-T4-001",
-      "run_id": null,
+      "run_id": "proc_ae898c053300",
       "evidence": [
-        "ticket_exists",
-        "needed_for_research_intake"
+        "process_exited_pid_44937",
+        "no_pushed_team_ref_beyond_6af8948",
+        "no_branch_local_artifact_found",
+        "agent_reported_wrong_or_minimal_repo_context",
+        "no_new_branch_local_commit_2026-05-07",
+        "profile_config_nvidia_direct_no_openrouter_fallback",
+        "remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0",
+        "process_not_running_pid_44937"
       ],
-      "verification_status": "not_started",
-      "conservative_classification": "ready"
+      "verification_status": "failed_no_accepted_artifact",
+      "conservative_classification": "blocked"
     }
   ],
   "notes": [

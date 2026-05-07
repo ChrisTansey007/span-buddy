@@ -26,9 +26,9 @@ tickets:
     priority: P0
     branch: hermes/product/SB-PM-001-governance
     worktree: .hermes/worktrees/SB-PM-001
-    evidence: [ticket_exists, governance_docs, pm_kickoff_decision]
+    evidence: [ticket_exists, governance_docs, pm_kickoff_decision, pm_cron_monitor_2026-05-07T03:59:29Z]
     verification_status: control_plane_verified
-    summary: PM kickoff produced; own research-build process, promotion gates, status evidence, and kickoff sequence.
+    summary: PM kickoff produced; owns research-build process, promotion gates, status evidence, and kickoff sequence; latest cron monitor kept Team 3/4 blocked due to no accepted commits or pushed refs.
   SB-T1-001:
     title: Define engine result contracts and shared sizing types
     lane: team1_core_engine
@@ -59,9 +59,9 @@ tickets:
     priority: P0
     branch: hermes/team3/SB-T3-001-verification
     worktree: .hermes/worktrees/SB-T3-001
-    evidence: [ticket_exists, needed_for_baseline, process_not_running_pid_44778, no_new_branch_local_commit_2026-05-07, remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0]
+    evidence: [ticket_exists, needed_for_baseline, process_not_running_pid_44778, cron_monitor_process_session_not_found_proc_ad352a7110eb, no_new_branch_local_commit_2026-05-07T03:59:29Z, remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0]
     verification_status: failed_no_accepted_artifact
-    summary: Direct-NVIDIA process exited without accepted artifact; no local/pushed branch commit beyond 6af8948; prior reported commit 553d120 was not found and push/verification failed.
+    summary: Direct-NVIDIA process/session is not running; no local/pushed branch commit beyond 6af8948; prior reported commit 553d120 was not found and push/verification failed.
   SB-T4-001:
     title: Research and map IRC 2021 table and section priorities for Phase 1
     lane: team4_rd
@@ -70,6 +70,6 @@ tickets:
     priority: P1
     branch: hermes/team4/SB-T4-001-rd-map
     worktree: .hermes/worktrees/SB-T4-001
-    evidence: [ticket_exists, needed_for_research_intake, process_not_running_pid_44937, no_new_branch_local_commit_2026-05-07, remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0]
+    evidence: [ticket_exists, needed_for_research_intake, process_not_running_pid_44937, cron_monitor_process_session_not_found_proc_ae898c053300, no_new_branch_local_commit_2026-05-07T03:59:29Z, remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0]
     verification_status: failed_no_accepted_artifact
-    summary: Direct-NVIDIA process exited without accepted artifact; no local/pushed branch commit beyond 6af8948; prior summary reported wrong/minimal repo context and no tracked source-map artifacts.
+    summary: Direct-NVIDIA process/session is not running; no local/pushed branch commit beyond 6af8948; prior summary reported wrong/minimal repo context and no tracked source-map artifacts.

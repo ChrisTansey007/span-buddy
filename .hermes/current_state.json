@@ -2,10 +2,10 @@
   "project": "Span Buddy",
   "schema_version": "1.0.0",
   "current_wave": "wave-001",
-  "current_phase": "team3-team4-blocked-after-direct-nvidia-recheck",
-  "last_reconciliation_time": "2026-05-07T02:32:43Z",
+  "current_phase": "team3-team4-blocked-after-direct-nvidia-cron-monitor",
+  "last_reconciliation_time": "2026-05-07T03:59:29Z",
   "last_verified_commit": null,
-  "next_safe_action": "PM should perform one clean recovery relaunch for Team 3/Team 4 only after reconciling worktrees, profile auth, and push path; keep blockers explicit until branch-local commits, pushed refs, and verification output exist.",
+  "next_safe_action": "Do not claim Team 3/Team 4 completion. Keep both blocked until an explicit recovery relaunch produces branch-local commits, pushed refs, and verification output; first reconcile push/auth/worktree path and preserve fresh locks.",
   "lanes": {
     "product_manager": {
       "status": "produced_artifact",
@@ -19,7 +19,9 @@
         "governance_docs",
         "pm_kickoff_decision",
         "pm_monitor_recheck_2026-05-07",
-        "governance_status_update"
+        "governance_status_update",
+        "pm_cron_monitor_2026-05-07T03:59:29Z",
+        "governance_status_update_2026-05-07T03:59:29Z"
       ],
       "lock_id": null,
       "blocked_reason": null,
@@ -70,10 +72,13 @@
         "no_new_branch_local_commit_2026-05-07",
         "process_not_running_pid_44778",
         "profile_config_nvidia_direct_no_openrouter_fallback",
-        "remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0"
+        "remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0",
+        "cron_monitor_process_session_not_found_proc_ad352a7110eb",
+        "process_not_running_pid_44778_2026-05-07T03:59:29Z",
+        "no_new_branch_local_commit_2026-05-07T03:59:29Z"
       ],
       "lock_id": "SB-T3-001-2026-05-06T02:37:43Z",
-      "blocked_reason": "Team 3 direct-NVIDIA process proc_ad352a7110eb/PID 44778 is not running; branch/worktree remains at 6af8948e94d814e49d321c15c67a142626031db0 with no local or pushed artifact commit. Prior agent final reported commit 553d120 but that commit is not present in repository refs; push failed because git could not read HTTPS credentials; unit tests and build were not green.",
+      "blocked_reason": "Team 3 direct-NVIDIA process proc_ad352a7110eb/PID 44778 is not running and Hermes process session proc_ad352a7110eb is not found; branch/worktree remains at 6af8948e94d814e49d321c15c67a142626031db0 with no local or pushed artifact commit. Prior agent final reported commit 553d120 but that commit is not present in repository refs; push failed because git could not read HTTPS credentials; unit tests and build were not green.",
       "verification_status": "failed_no_accepted_artifact"
     },
     "team4_rd": {
@@ -91,10 +96,13 @@
         "no_new_branch_local_commit_2026-05-07",
         "profile_config_nvidia_direct_no_openrouter_fallback",
         "remote_ref_verified_6af8948e94d814e49d321c15c67a142626031db0",
-        "process_not_running_pid_44937"
+        "process_not_running_pid_44937",
+        "cron_monitor_process_session_not_found_proc_ae898c053300",
+        "process_not_running_pid_44937_2026-05-07T03:59:29Z",
+        "no_new_branch_local_commit_2026-05-07T03:59:29Z"
       ],
       "lock_id": "SB-T4-001-2026-05-06T02:37:43Z",
-      "blocked_reason": "Team 4 direct-NVIDIA process proc_ae898c053300/PID 44937 is not running; branch/worktree remains at 6af8948e94d814e49d321c15c67a142626031db0 with no local or pushed artifact commit. Prior agent summary reported wrong/minimal repo context and no accepted tracked source-map artifacts.",
+      "blocked_reason": "Team 4 direct-NVIDIA process proc_ae898c053300/PID 44937 is not running and Hermes process session proc_ae898c053300 is not found; branch/worktree remains at 6af8948e94d814e49d321c15c67a142626031db0 with no local or pushed artifact commit. Prior agent summary reported wrong/minimal repo context and no accepted tracked source-map artifacts.",
       "verification_status": "failed_no_accepted_artifact"
     }
   }
